@@ -40,4 +40,25 @@ const MainNavigationData = [
     },
 ] as const;
 
-export { MainNavigationData };
+const MainNavigationContactData = [
+    {
+        name: 'ul. Olesin 31F, 03-289 Warszawa',
+        icon: '/icons/localization.svg',
+        alt: 'localizacja',
+    },
+
+    {
+        name: '+48 501 333 911',
+        icon: '/icons/phone.svg',
+        alt: 'numer telefonu',
+    },
+
+    {
+        name: 'kontakt@mztsport.pl',
+        icon: '/icons/email.svg',
+        alt: 'email',
+    },
+
+] as const;
+
+export { MainNavigationData, MainNavigationContactData };
