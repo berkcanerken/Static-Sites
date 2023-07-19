@@ -86,7 +86,7 @@ const MainNavigationMenu: React.FC = () => {
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
           isVisible={isOpen}
-        >
+        > 
           <MainNavigationContactListStyled>
             {MainNavigationContactData.map(({ name, icon, alt }) => {
               const href = checkTheContactMethod(name);

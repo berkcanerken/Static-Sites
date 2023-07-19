@@ -11,6 +11,7 @@ import {
 import styled from 'styled-components';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { defaultTheme } from '@/providers/ThemeProvider';
 
 const MainNavigationMenuStyled = styled(AppBar)`
   flex-direction: column;
@@ -18,6 +19,8 @@ const MainNavigationMenuStyled = styled(AppBar)`
   justify-content: space-between;
   gap: 50px;
   padding: 8px 0;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  box-shadow: none;
 
   @media screen and (min-width: 1024px) {
     flex-direction: row;
@@ -65,7 +68,7 @@ const MainNavigationMenuButtonStyled = styled(Button)`
   min-width: 48px;
   width: 48px;
   height: 48px;
-  background: #1976d2;
+  background: ${({ theme }) => theme.background};
   border-radius: 50%;
   overflow: hidden;
 
@@ -83,13 +86,13 @@ const MainNavigationMenuButtonStyled = styled(Button)`
 const MainNavigationHamburgerMenuIcon = styled(MenuRoundedIcon)`
   width: 48px;
   height: 48px;
-  background: white;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
 `;
 
 const MainNavigationCloseMenuIcon = styled(CloseRoundedIcon)`
   width: 48px;
   height: 48px;
-  background: white;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
 `;
 
 const MainNavigationContentWrapper = styled(Box)<{ isVisible: boolean }>`
@@ -107,21 +110,10 @@ const MainNavigationContentWrapper = styled(Box)<{ isVisible: boolean }>`
 const MainNavigationDivider = styled(Divider)`
   display: none;
   width: 90%;
-  background-color: red;
+  background-color: ${({ theme }) => (theme as typeof defaultTheme).item};
 
   @media screen and (min-width: 1024px) {
     display: block;
-  }
-`;
-
-const MainNavigationMenuListStyled = styled(List)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 25px;
-
-  @media screen and (min-width: 1024px) {
-    flex-direction: row;
   }
 `;
 
@@ -140,7 +132,7 @@ const MainNavigationContactListStyled = styled(List)`
   gap: 25px;
 
   ${MainNavigationMenuListItemStyled} {
-    padding: 10px;
+    padding: 10px 0;
   }
 
   @media screen and (min-width: 1024px) {
@@ -150,12 +142,35 @@ const MainNavigationContactListStyled = styled(List)`
 
 const MainNavigationLinkStyled = styled(Link)`
   width: max-content;
-  color: white;
+  color: ${({ theme }) => (theme as typeof defaultTheme).item};
 `;
 
 const MainNavigationText = styled(Typography)`
   width: max-content;
-  color: white;
+  color: ${({ theme }) => (theme as typeof defaultTheme).item};
+`;
+
+const MainNavigationMenuListStyled = styled(List)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 25px;
+
+  ${MainNavigationMenuListItemStyled} {
+    ${MainNavigationLinkStyled} {
+      font-weight: 600;
+    }
+  }
+
+  ${MainNavigationMenuListItemStyled}:first-of-type {
+    ${MainNavigationLinkStyled} {
+      color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
 `;
 
 export {
