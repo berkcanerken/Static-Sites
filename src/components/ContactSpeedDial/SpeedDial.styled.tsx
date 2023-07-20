@@ -9,6 +9,7 @@ const ContactSpeedDialStyled = styled(SpeedDial)`
   position: fixed;
   right: 16px;
   bottom: 16px;
+  margin-bottom: 400px;
   z-index: 1001;
 
   .css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
