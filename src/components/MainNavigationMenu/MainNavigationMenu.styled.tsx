@@ -14,12 +14,14 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { defaultTheme } from '@/providers/ThemeProvider';
 
 const MainNavigationMenuStyled = styled(AppBar)`
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 8px 0;
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   box-shadow: none;
+  z-index: 1002;
 
   @media screen and (min-width: 1024px) {
     flex-direction: row;

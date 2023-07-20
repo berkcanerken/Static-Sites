@@ -3,14 +3,16 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import { SpeedDialAction } from '@mui/material';
 import { defaultTheme } from '@/providers/ThemeProvider';
+import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 
 const ContactSpeedDialStyled = styled(SpeedDial)`
   position: fixed;
   right: 16px;
   bottom: 16px;
+  z-index: 1001;
 
   .css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
-    background: ${({ theme }) => (theme as typeof defaultTheme).item};
+    background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
   }
 
   @media screen and (min-width: 1024px) {
@@ -18,7 +20,7 @@ const ContactSpeedDialStyled = styled(SpeedDial)`
   }
 `;
 
-const ContactSpeedDialIconStyled = styled(SpeedDialIcon)``;
+const ContactSpeedDialIconStyled = styled(QuestionAnswerOutlinedIcon)``;
 
 const ContactSpeedDialActionStyled = styled(SpeedDialAction)``;
 
