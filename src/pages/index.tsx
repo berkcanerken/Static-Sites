@@ -4,6 +4,7 @@ import { Inter } from '@next/font/google';
 import { Article } from '@/components/Article';
 import { Hero } from '@/components/Hero';
 import { AboutUsSection } from '@/components/AboutUsSection';
+import { Banner } from '@/components/Banner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,8 @@ const Home: React.FC = () => {
           ></Hero>
 
           <AboutUsSection />
+
+          <Banner />
         </Article>
       </main>
     </>

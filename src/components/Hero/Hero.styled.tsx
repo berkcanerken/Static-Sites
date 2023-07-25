@@ -7,14 +7,16 @@ const HeroStyled = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
   overflow: hidden;
 `;
 
 const HeroImageStyles = styled(Image)`
   width: 100%;
+  min-height: 450px;
   height: auto;
+  object-fit: cover;
 `;
 
 export { HeroStyled, HeroImageStyles };

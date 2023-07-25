@@ -5,12 +5,12 @@ import { SpeedDialAction } from '@mui/material';
 import { defaultTheme } from '@/providers/ThemeProvider';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 
-const ContactSpeedDialStyled = styled(SpeedDial)`
+const ContactSpeedDialStyled = styled(SpeedDial)<{ isNearBottom: boolean }>`
   position: fixed;
   right: 16px;
   bottom: 16px;
-  margin-bottom: 400px;
   z-index: 1001;
+  margin-bottom: ${(isNearBootom) => (!isNearBootom ? '400px' : '0')};
 
   .css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
     background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};

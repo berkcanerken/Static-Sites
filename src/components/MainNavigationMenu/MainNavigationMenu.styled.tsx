@@ -14,7 +14,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { defaultTheme } from '@/providers/ThemeProvider';
 
 const MainNavigationMenuStyled = styled(AppBar)`
-  position: relative;
+  position: fixed;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -24,9 +24,14 @@ const MainNavigationMenuStyled = styled(AppBar)`
   z-index: 1002;
 
   @media screen and (min-width: 1024px) {
+    position: relative;
     flex-direction: row;
     justify-content: center;
     padding: 0;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
     gap: 50px;
   }
 `;
@@ -191,6 +196,10 @@ const MainNavigationMenuListStyled = styled(List)`
   @media screen and (min-width: 1024px) {
     width: fit-content;
     flex-direction: row;
+    gap: 15px;
+  }
+
+  @media screen and (min-width: 1280px) {
     gap: 25px;
   }
 `;

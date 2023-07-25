@@ -30,6 +30,7 @@ const FootersContentWrapperStyled = styled(Box)`
 const FooterTextStyled = styled.p<{ opacity: number }>`
   color: white;
   opacity: ${({ opacity = 100 }) => opacity}%;
+  text-align: center;
 `;
 
 const FooterLinkStyled = styled(Link)`
