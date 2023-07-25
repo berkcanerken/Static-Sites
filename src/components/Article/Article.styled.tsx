@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ArticleStyled = styled.article`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +10,12 @@ const ArticleStyled = styled.article`
   width: 100vw;
   min-height: 300px;
   height: fit-content;
+  margin: auto;
   margin-bottom: 400px;
+
+  @media screen and (min-width: 1024px) {
+    width: 70vw; 
+  }
 `;
 
 export { ArticleStyled };

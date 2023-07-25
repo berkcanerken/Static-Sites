@@ -11,8 +11,8 @@ const Hero: React.FC<HeroProps> = ({ children, image, alt }) => (
     <HeroImageStyles
       src={image}
       alt={alt}
-      width={100}
-      height={100}
+      width={1905}
+      height={790}
     ></HeroImageStyles>
 
     {children}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import { Article } from '@/components/Article';
 import { Hero } from '@/components/Hero';
+import { AboutUsSection } from '@/components/AboutUsSection';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,6 +22,8 @@ const Home: React.FC = () => {
             image="/icons/homeHeroImg.png"
             alt="zdjęcie z tańczącymi ludźmi"
           ></Hero>
+
+          <AboutUsSection />
         </Article>
       </main>
     </>
