@@ -8,4 +8,4 @@ const colors = {
     lightBorder: '#BDBDBF',
  };
 
- export { colors };
+export { colors };
