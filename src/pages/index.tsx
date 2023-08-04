@@ -5,10 +5,89 @@ import { Article } from '@/components/Article';
 import { Hero } from '@/components/Hero';
 import { AboutUsSection } from '@/components/AboutUsSection';
 import { Banner } from '@/components/Banner';
+import { SlideProps, Slideshow } from '@/components/Slideshow';
+import { Section } from '@/components/Section';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const Home: React.FC = () => {
+  const slidesData: SlideProps[] = [
+    {
+      image: {
+        src: '/icons/Rectangle.png',
+        alt: 'Wydarzenie',
+        width: 300,
+        height: 300,
+      },
+      heading: 'Wydarzenie',
+      date: '2023-07-26',
+      link: {
+        link: '/',
+        text: 'Sprawdź',
+      },
+    },
+
+    {
+      image: {
+        src: '/icons/Rectangle.png',
+        alt: 'Wydarzenie',
+        width: 300,
+        height: 300,
+      },
+      heading: 'Wydarzenie',
+      date: '2023-07-26',
+      link: {
+        link: '/',
+        text: 'Sprawdź',
+      },
+    },
+
+    {
+      image: {
+        src: '/icons/Rectangle.png',
+        alt: 'Wydarzenie',
+        width: 300,
+        height: 300,
+      },
+      heading: 'Wydarzenie',
+      date: '2023-07-26',
+      link: {
+        link: '/',
+        text: 'Sprawdź',
+      },
+    },
+
+    {
+      image: {
+        src: '/icons/Rectangle.png',
+        alt: 'Wydarzenie',
+        width: 300,
+        height: 300,
+      },
+      heading: 'Wydarzenie',
+      date: '2023-07-26',
+      link: {
+        link: '/',
+        text: 'Sprawdź',
+      },
+    },
+
+    {
+      image: {
+        src: '/icons/Rectangle.png',
+        alt: 'Wydarzenie',
+        width: 300,
+        height: 300,
+      },
+      heading: 'Wydarzenie',
+      date: '2023-07-26',
+      link: {
+        link: '/',
+        text: 'Sprawdź',
+      },
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -26,7 +105,15 @@ const Home: React.FC = () => {
 
           <AboutUsSection />
 
+          <Section heading="Wydarzenia">
+            <Slideshow slides={slidesData} />
+          </Section>
+
           <Banner />
+
+          <Section heading="Aktualności">
+            <Slideshow slides={slidesData} />
+          </Section>
         </Article>
       </main>
     </>

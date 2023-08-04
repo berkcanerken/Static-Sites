@@ -38,7 +38,7 @@ const Banner = () => {
           height={bannerData.link.Image.height}
         ></BannerLogoStyled>
 
-        <InsideLink hyperLink={bannerData.link.link}>
+        <InsideLink isPrimary={true} hyperLink={bannerData.link.link}>
           {bannerData.link.text}
         </InsideLink>
       </BannerWrapperStyled>

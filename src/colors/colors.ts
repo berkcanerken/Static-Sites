@@ -5,6 +5,7 @@ const colors = {
     item: '#311F5E',
     primaryItem: '#D0237A',
     placeHolder: '#D7D7D7',
+    lightBorder: '#BDBDBF',
  };
 
  export { colors };
