@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
-import { Article } from '@/components/Layout/LayoutChildrenWrapper';
 import { RegulationsSection } from '@/components/Domain/regultaions/RegulationsSection/RegulationsSection';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -15,9 +14,9 @@ const Regulations: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Article>
+        <article>
           <RegulationsSection />
-        </Article>
+        </article>
       </main>
     </>
   );

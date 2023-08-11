@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
-import { Article } from '@/components/Article';
 import { CooperationSection } from '@/components/Domain/cooperation/CooperationSection';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -15,9 +14,9 @@ const Cooperation: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Article>
+        <article>
           <CooperationSection />
-        </Article>
+        </article>
       </main>
     </>
   );

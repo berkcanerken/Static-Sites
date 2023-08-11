@@ -1,1 +1,1 @@
-export * from `./OutsideLink`;
+export * from './OutsideLink';
