@@ -37,7 +37,7 @@ const RegulationsSection: React.FC = () => {
         <RegulationsBoxStyled>
           {RegulationsInPreparatorySportsData.map(({ name, href, data }) => {
             return (
-              <OutsideLink hyperLink={href}>
+              <OutsideLink key={uuid()} hyperLink={href}>
                 {name} - obowiązuje od {data}
               </OutsideLink>
             );
@@ -49,7 +49,11 @@ const RegulationsSection: React.FC = () => {
         <RegulationsHeadingStyled>Inne formy tańca</RegulationsHeadingStyled>
         <RegulationsBoxStyled>
           {RegulationsOtherFormsOfDanceData.map(({ name, href }) => {
-            return <OutsideLink hyperLink={href}>{name}</OutsideLink>;
+            return (
+              <OutsideLink key={uuid()} hyperLink={href}>
+                {name}
+              </OutsideLink>
+            );
           })}
         </RegulationsBoxStyled>
       </RegulationsSectioinStyled>

@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import {
   SlideshowImageStyled,
   SlideshowItemStyled,

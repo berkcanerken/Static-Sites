@@ -1,1 +1,1 @@
-export * from `./RegulationsSection`;
+export * from './RegulationsSection';

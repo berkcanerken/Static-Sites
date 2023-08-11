@@ -36,7 +36,7 @@ const MainNavigationData = [
 
   {
     name: 'Współpraca',
-    href: '/',
+    href: '/cooperation',
   },
 ] as const;
 
