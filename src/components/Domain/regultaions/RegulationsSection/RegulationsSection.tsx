@@ -10,6 +10,7 @@ import {
   RegulationsOtherFormsOfDanceData,
 } from './RegulationsSection.data';
 import { OutsideLink } from '@/components/OutsideLink/OutsideLink';
+import { v4 as uuid } from 'uuid';
 
 const RegulationsSection: React.FC = () => {
   return (
@@ -20,7 +21,11 @@ const RegulationsSection: React.FC = () => {
         </RegulationsHeadingStyled>
         <RegulationsBoxStyled>
           {RegulationsInDanceSportsData.map(({ name, href }) => {
-            return <OutsideLink hyperLink={href}>{name}</OutsideLink>;
+            return (
+              <OutsideLink key={uuid()} hyperLink={href}>
+                {name}
+              </OutsideLink>
+            );
           })}
         </RegulationsBoxStyled>
       </RegulationsSectioinStyled>

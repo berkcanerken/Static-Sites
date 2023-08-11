@@ -7,13 +7,19 @@ import {
   FootersContentWrapperStyled,
 } from './Footer.styled';
 import { getFooterContactData, getPolicyData } from './Footer.data';
+import { FooterCopyrightApiType, MenuApiType } from '../types/server';
+import { v4 as uuid } from 'uuid';
 
-const Footer: React.FC = () => {
+type FooterProps = {
+  data: [MenuApiType, MenuApiType, FooterCopyrightApiType];
+};
+
+const Footer: React.FC<FooterProps> = ({ data }) => {
   return (
     <FooterStyled>
       <FootersContentWrapperStyled>
         {getFooterContactData().map((link) => (
-          <FooterAvaterStyled>
+          <FooterAvaterStyled key={uuid()}>
             <FooterLinkStyled
               href={link.link}
               target="_blank"
@@ -27,7 +33,7 @@ const Footer: React.FC = () => {
 
       <FootersContentWrapperStyled>
         {getPolicyData().map((icon) => (
-          <FooterLinkStyled href={icon.link}>
+          <FooterLinkStyled href={icon.link} key={uuid()}>
             {icon.icon}
             {icon.name}
           </FooterLinkStyled>
@@ -35,9 +41,7 @@ const Footer: React.FC = () => {
       </FootersContentWrapperStyled>
 
       <FootersContentWrapperStyled>
-        <FooterTextStyled opacity={60}>
-          © 2023 Mazowiecki związek tańca sportowego
-        </FooterTextStyled>
+        <FooterTextStyled opacity={60}>{data[2]}</FooterTextStyled>
       </FootersContentWrapperStyled>
     </FooterStyled>
   );

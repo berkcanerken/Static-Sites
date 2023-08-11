@@ -5,7 +5,9 @@ import { SpeedDialAction } from '@mui/material';
 import { defaultTheme } from '@/providers/ThemeProvider';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 
-const ContactSpeedDialStyled = styled(SpeedDial)<{ isNearBottom: boolean }>`
+const ContactSpeedDialStyled = styled(SpeedDial).withConfig({
+  shouldForwardProp: (prop) => !['isNearBottom'].includes(prop),
+})<{ isNearBottom: boolean }>`
   position: fixed;
   right: 16px;
   bottom: 16px;

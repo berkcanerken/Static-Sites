@@ -6,8 +6,13 @@ import {
   ContactSpeedDialSvgStyled,
 } from './SpeedDial.styled';
 import { getContactData } from './ContactSpeedDial.data';
+import { FooterCopyrightApiType, MenuApiType } from '../types/server';
 
-const ContactSpeedDial = () => {
+type ContactSpeedDialProps = {
+  data: MenuApiType;
+};
+
+const ContactSpeedDial: React.FC<ContactSpeedDialProps> = ({ data }) => {
   const [action, setAction] = React.useState<string | null>(null);
   const [isNearBottom, setIsNearBottom] = React.useState<boolean>(false);
 

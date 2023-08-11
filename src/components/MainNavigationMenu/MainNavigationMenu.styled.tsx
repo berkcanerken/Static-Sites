@@ -109,7 +109,9 @@ const MainNavigationCloseMenuIcon = styled(CloseRoundedIcon)`
   }
 `;
 
-const MainNavigationContentWrapper = styled(Box)<{ isVisible: boolean }>`
+const MainNavigationContentWrapper = styled(Box).withConfig({
+  shouldForwardProp: (prop) => !['isVisible'].includes(prop),
+})<{ isVisible: boolean }>`
   display: ${({ isVisible = false }) => (isVisible ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;

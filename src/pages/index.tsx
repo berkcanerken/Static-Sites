@@ -1,15 +1,24 @@
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import { Article } from '@/components/Article';
 import { Hero } from '@/components/Hero';
 import { AboutUsSection } from '@/components/AboutUsSection';
 import { Banner } from '@/components/Banner';
 import { SlideProps, Slideshow } from '@/components/Slideshow';
 import { Section } from '@/components/Section';
+import { GetStaticProps, NextPage } from 'next';
+import { getLayoutProps } from '@/handlers/server';
+import { Layout, LayoutProps } from '@/components/Layout';
 
-const inter = Inter({ subsets: ['latin'] });
+export const getStaticProps: GetStaticProps = async (context) => {
+  const result = await getLayoutProps(context);
 
-const Home: React.FC = () => {
+  return result;
+};
+
+type HomePageProps = LayoutProps;
+
+const Home: NextPage<HomePageProps> = (props) => {
+  console.log('propsy: ', props);
+
   const slidesData: SlideProps[] = [
     {
       image: {
@@ -96,7 +105,14 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Article>
+        <Layout
+          mainMenuLogo={props.mainMenuLogo}
+          mainMenuContact={props.mainMenuContact}
+          mainMenu={props.mainMenu}
+          footerSocial={props.footerSocial}
+          footerPolicy={props.footerPolicy}
+          footerCopyright={props.footerCopyright}
+        >
           <Hero
             image="/icons/homeHeroImg.png"
             alt="zdjęcie z tańczącymi ludźmi"
@@ -113,7 +129,7 @@ const Home: React.FC = () => {
           <Section heading="Aktualności">
             <Slideshow slides={slidesData} />
           </Section>
-        </Article>
+        </Layout>
       </main>
     </>
   );

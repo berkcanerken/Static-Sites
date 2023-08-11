@@ -23,8 +23,13 @@ import {
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { v4 as uuid } from 'uuid';
 import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
+import { LogoApiType, MenuApiType } from '../types/server';
 
-const MainNavigationMenu: React.FC = () => {
+type MainNavigationMenuProps = {
+  data: [LogoApiType, MenuApiType, MenuApiType];
+};
+
+const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const handleClickAway = () => {
@@ -86,7 +91,7 @@ const MainNavigationMenu: React.FC = () => {
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
           isVisible={isOpen}
-        > 
+        >
           <MainNavigationContactListStyled>
             {MainNavigationContactData.map(({ name, icon, alt }) => {
               const href = checkTheContactMethod(name);

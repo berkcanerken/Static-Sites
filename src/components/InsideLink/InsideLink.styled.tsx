@@ -2,7 +2,9 @@ import { defaultTheme } from '@/providers/ThemeProvider';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const InsideLinkStyled = styled(Link)<{ isPrimary: boolean }>`
+const InsideLinkStyled = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !['isPrimary'].includes(prop),
+})<{ isPrimary: boolean }>`
   padding: 10px 50px;
   border: solid 2px
     ${({ theme, isPrimary }) =>
