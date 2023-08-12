@@ -40,8 +40,10 @@ const CooperationBoxStyled = styled(Link)`
 
 const CooperationLogoImgStyled = styled(Image)`
   display: flex;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  min-height: 150px;
+  height: auto;
+  object-fit: cover;
 `;
 
 const CooperationLogoTitleStyled = styled.h2`
@@ -50,6 +52,7 @@ const CooperationLogoTitleStyled = styled.h2`
   font-weight: 700;
   color: ${({ theme }) => (theme as typeof defaultTheme).text};
   margin: 10px 0;
+  text-align: center;
 `;
 
 const CooperationLogoDescriptionStyled = styled.p`

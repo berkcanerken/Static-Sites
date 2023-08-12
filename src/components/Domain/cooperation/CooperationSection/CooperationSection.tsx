@@ -2,6 +2,7 @@ import React from 'react';
 import {
   CooperationBoxStyled,
   CooperationLogoDescriptionStyled,
+  CooperationLogoImgStyled,
   CooperationLogoTitleStyled,
   CooperationSectionStyled,
 } from './CooperationSection.styled';
@@ -12,16 +13,21 @@ const CooperationSection = () => {
   return (
     <>
       <CooperationSectionStyled>
-        {CooperationInformation.map(({ title, description, href }) => {
-          return (
-            <CooperationBoxStyled href={href} key={uuid()}>
-              <CooperationLogoTitleStyled>{title}</CooperationLogoTitleStyled>
-              <CooperationLogoDescriptionStyled>
-                {description}
-              </CooperationLogoDescriptionStyled>
-            </CooperationBoxStyled>
-          );
-        })}
+        {CooperationInformation.map(
+          ({ title, description, href, image, width, height }) => {
+            return (
+              <CooperationBoxStyled href={href} key={uuid()}>
+                <CooperationLogoTitleStyled>{title}</CooperationLogoTitleStyled>
+                <CooperationLogoImgStyled
+                  src={image}
+                  width={width}
+                  height={height}
+                  alt={description}
+                />
+              </CooperationBoxStyled>
+            );
+          }
+        )}
       </CooperationSectionStyled>
     </>
   );
