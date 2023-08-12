@@ -36,7 +36,7 @@ const Layout: React.FC<Props> = ({
 
       <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
 
-      <ContactSpeedDial data={mainMenuContact} />
+      {mainMenuContact && <ContactSpeedDial data={mainMenuContact} />}
 
       <Footer data={[footerSocial, footerPolicy, footerCopyright]} />
     </LayoutStyled>

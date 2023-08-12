@@ -1,4 +1,12 @@
-import React, { FC } from 'react';
+import React from 'react';
+import Image from 'next/image';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { v4 as uuid } from 'uuid';
+import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
+import {
+  MainNavigationData,
+  MainNavigationContactData,
+} from './MainNavigationMenu.data';
 import {
   MainNavigationMenuStyled,
   MainNavigationLogoWrapper,
@@ -15,14 +23,6 @@ import {
   MainNavigationContactListStyled,
   MainNavigationText,
 } from './MainNavigationMenu.styled';
-import Image from 'next/image';
-import {
-  MainNavigationData,
-  MainNavigationContactData,
-} from './MainNavigationMenu.data';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import { v4 as uuid } from 'uuid';
-import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
 import { LogoApiType, MenuApiType } from '../types/server';
 
 type MainNavigationMenuProps = {
@@ -64,7 +64,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
                 alt="logo MZTS"
                 width="56"
                 height="56"
-              ></Image>
+              />
             </MainNavigationLogoWrapperOnMobile>
 
             <MainNavigationLogoWrapper>
@@ -73,7 +73,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
                 alt="logo MZTS"
                 width="128"
                 height="128"
-              ></Image>
+              />
             </MainNavigationLogoWrapper>
           </MainNavigationLinkStyled>
 
