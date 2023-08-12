@@ -2,17 +2,17 @@ import { ContactMenuApiResponseType, FooterCopyrightApiResponseType, LogoRespons
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
 const getLayoutProps = async <P extends Record<string, unknown>>(staticPropsContext: GetStaticPropsContext, getPageProps?: GetStaticProps<P>) => {
-    const mainMenuLogoResponse = await fetch('http://127.0.0.1:1337/api/menu-logo?populate=*');
+    const mainMenuLogoResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/menu-logo?populate=*');
     const mainMenuLogo = await mainMenuLogoResponse.json() as LogoResponseType;
-    const mainMenuContactResponse = await fetch('http://127.0.0.1:1337/api/contact-menu?populate=contactLinks');
+    const mainMenuContactResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/contact-menu?populate=contactLinks');
     const mainMenuContact = await mainMenuContactResponse.json() as ContactMenuApiResponseType;
-    const mainMenuResponse = await fetch('http://127.0.0.1:1337/api/navigation-menu?populate=links');
+    const mainMenuResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/navigation-menu?populate=links');
     const mainMenu = await mainMenuResponse.json() as MenuApiResponseType;
-    const footerSocialResponse = await fetch('http://127.0.0.1:1337/api/footer-social-media?populate=links');
+    const footerSocialResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/footer-social-media?populate=links');
     const footerSocial = await footerSocialResponse.json() as MenuApiResponseType;
-    const footerPolicyResponse = await fetch('http://127.0.0.1:1337/api/footer-policy-list?populate=links');
+    const footerPolicyResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/footer-policy-list?populate=links');
     const footerPolicy = await footerPolicyResponse.json() as MenuApiResponseType;
-    const footerCopyrightResponse = await fetch('http://127.0.0.1:1337/api/footer-copyright');
+    const footerCopyrightResponse = await fetch('https://strapi-139719-0.cloudclusters.net/api/footer-copyright');
     const footerCopyright = await footerCopyrightResponse.json() as FooterCopyrightApiResponseType;
  
     const pageProps = await (typeof getPageProps === 'function' ? getPageProps : () => new Promise((resolve) => { resolve({}) }))(staticPropsContext);
