@@ -1,10 +1,21 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { RegulationsSection } from '@/components/Domain/regultaions/RegulationsSection/RegulationsSection';
+import { Layout, LayoutProps } from '@/components/Layout';
+import { GetStaticProps, NextPage } from 'next';
+import { getLayoutProps } from '@/handlers/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Regulations: React.FC = () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const result = await getLayoutProps(context);
+
+  return result;
+};
+
+type RegulationsPageProps = LayoutProps;
+
+const RegulationsPage: NextPage<RegulationsPageProps> = (props) => {
   return (
     <>
       <Head>
@@ -14,12 +25,19 @@ const Regulations: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <article>
+        <Layout
+          mainMenuLogo={props.mainMenuLogo}
+          mainMenuContact={props.mainMenuContact}
+          mainMenu={props.mainMenu}
+          footerSocial={props.footerSocial}
+          footerPolicy={props.footerPolicy}
+          footerCopyright={props.footerCopyright}
+        >
           <RegulationsSection />
-        </article>
+        </Layout>
       </main>
     </>
   );
 };
 
-export default Regulations;
+export default RegulationsPage;

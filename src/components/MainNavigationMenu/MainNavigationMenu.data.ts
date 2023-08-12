@@ -15,7 +15,7 @@ const MainNavigationData = [
   },
 
   {
-    name: 'Przepisy',
+    name: 'Przypisy',
     href: '/regulations',
   },
 

@@ -1,10 +1,21 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { CooperationSection } from '@/components/Domain/cooperation/CooperationSection';
+import { Layout, LayoutProps } from '@/components/Layout';
+import { GetStaticProps, NextPage } from 'next';
+import { getLayoutProps } from '@/handlers/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Cooperation: React.FC = () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const result = await getLayoutProps(context);
+
+  return result;
+};
+
+type CooperationPageProps = LayoutProps;
+
+const CooperationPage: NextPage<CooperationPageProps> = (props) => {
   return (
     <>
       <Head>
@@ -14,12 +25,19 @@ const Cooperation: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <article>
+        <Layout
+          mainMenuLogo={props.mainMenuLogo}
+          mainMenuContact={props.mainMenuContact}
+          mainMenu={props.mainMenu}
+          footerSocial={props.footerSocial}
+          footerPolicy={props.footerPolicy}
+          footerCopyright={props.footerCopyright}
+        >
           <CooperationSection />
-        </article>
+        </Layout>
       </main>
     </>
   );
 };
 
-export default Cooperation;
+export default CooperationPage;
