@@ -25,6 +25,7 @@ import {
   MainNavigationActivedLinkStyled,
 } from './MainNavigationMenu.styled';
 import { LogoApiType, MenuApiType } from '../types/server';
+import { ButtonActionWrapper } from '../ButtonActionWrapper';
 
 type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];
@@ -135,12 +136,16 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
           <MainNavigationMenuListStyled>
             {MainNavigationData.map(({ href, name }, index) => (
               <MainNavigationMenuListItemStyled key={`${name} : ${uuid()}`}>
-                <MainNavigationActivedLinkStyled
-                  isCurrentVisited={index === indexOfCurrentLink ? true : false}
-                  href={href}
-                >
-                  {name}
-                </MainNavigationActivedLinkStyled>
+                <ButtonActionWrapper>
+                  <MainNavigationActivedLinkStyled
+                    isCurrentVisited={
+                      index === indexOfCurrentLink ? true : false
+                    }
+                    href={href}
+                  >
+                    {name}
+                  </MainNavigationActivedLinkStyled>
+                </ButtonActionWrapper>
               </MainNavigationMenuListItemStyled>
             ))}
           </MainNavigationMenuListStyled>
