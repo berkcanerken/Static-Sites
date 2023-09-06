@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 type HomePageProps = LayoutProps;
 
 const Home: NextPage<HomePageProps> = (props) => {
-  console.log('propsy: ', props);
+  // console.log('propsy: ', props);
 
   const slidesData: SlideProps[] = [
     {

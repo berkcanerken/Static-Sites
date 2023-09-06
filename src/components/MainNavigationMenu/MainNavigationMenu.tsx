@@ -22,6 +22,7 @@ import {
   MainNavigationCloseMenuIcon,
   MainNavigationContactListStyled,
   MainNavigationText,
+  MainNavigationActivedLinkStyled,
 } from './MainNavigationMenu.styled';
 import { LogoApiType, MenuApiType } from '../types/server';
 
@@ -29,8 +30,25 @@ type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];
 };
 
+const getLinkWithoutBaseUrl = (link: string): string => {
+  const endingOfLink = link.split('/')[3];
+
+  return `/${endingOfLink}`;
+};
+
 const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [indexOfCurrentLink, setIndexOfCurrentLink] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    const currentUrl = window.location.href;
+    const endingOfUrl = getLinkWithoutBaseUrl(currentUrl);
+    const indexOfCurrentLink = MainNavigationData.findIndex(
+      (current) => current.href === endingOfUrl
+    );
+
+    setIndexOfCurrentLink(indexOfCurrentLink);
+  }, [indexOfCurrentLink]);
 
   const handleClickAway = () => {
     setIsOpen(false);
@@ -57,7 +75,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
     >
       <MainNavigationMenuStyled position="static">
         <MainNavigationMenuBoxStyled>
-          <MainNavigationLinkStyled href="/" underline="none">
+          <MainNavigationLinkStyled href="/">
             <MainNavigationLogoWrapperOnMobile>
               <Image
                 src="/icons/mztsLogoWithoutText.svg"
@@ -101,7 +119,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
                   <Image src={icon} alt={alt} width="26" height="26" />
 
                   {href ? (
-                    <MainNavigationLinkStyled href={href} underline="none">
+                    <MainNavigationLinkStyled href={href}>
                       {name}
                     </MainNavigationLinkStyled>
                   ) : (
@@ -115,11 +133,14 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
           <MainNavigationDivider light />
 
           <MainNavigationMenuListStyled>
-            {MainNavigationData.map(({ href, name }) => (
+            {MainNavigationData.map(({ href, name }, index) => (
               <MainNavigationMenuListItemStyled key={`${name} : ${uuid()}`}>
-                <MainNavigationLinkStyled href={href} underline="none">
+                <MainNavigationActivedLinkStyled
+                  isCurrentVisited={index === indexOfCurrentLink ? true : false}
+                  href={href}
+                >
                   {name}
-                </MainNavigationLinkStyled>
+                </MainNavigationActivedLinkStyled>
               </MainNavigationMenuListItemStyled>
             ))}
           </MainNavigationMenuListStyled>

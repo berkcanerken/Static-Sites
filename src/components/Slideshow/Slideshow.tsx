@@ -39,7 +39,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides }) => {
       );
       const calculatedContainerWidth = numberOfVisibleItems * listItemWidth;
 
-      console.log('szerokość: ', calculatedContainerWidth);
+      // console.log('szerokość: ', calculatedContainerWidth);
       setContainerWidth(calculatedContainerWidth);
     }
   }, [slides]);

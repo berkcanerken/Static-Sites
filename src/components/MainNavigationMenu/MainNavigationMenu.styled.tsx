@@ -4,7 +4,7 @@ import {
   List,
   ListItem,
   Box,
-  Link,
+  Link as MuiLInk,
   Divider,
   Typography,
 } from '@mui/material';
@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { defaultTheme } from '@/providers/ThemeProvider';
+import Link from 'next/link';
 
 const MainNavigationMenuStyled = styled(AppBar)`
   position: fixed;
@@ -171,6 +172,19 @@ const MainNavigationLinkStyled = styled(Link)`
   color: ${({ theme }) => (theme as typeof defaultTheme).item};
 `;
 
+const MainNavigationActivedLinkStyled = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !['isCurrentVisited'].includes(prop),
+})<{
+  isCurrentVisited: boolean;
+}>`
+  width: max-content;
+  color: ${({ theme, isCurrentVisited }) =>
+    isCurrentVisited
+      ? (theme as typeof defaultTheme).primaryItem
+      : (theme as typeof defaultTheme).item};
+  font-weight: 600;
+`;
+
 const MainNavigationText = styled(Typography)`
   width: max-content;
   color: ${({ theme }) => (theme as typeof defaultTheme).item};
@@ -182,18 +196,6 @@ const MainNavigationMenuListStyled = styled(List)`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
-  ${MainNavigationMenuListItemStyled} {
-    ${MainNavigationLinkStyled} {
-      font-weight: 600;
-    }
-  }
-
-  ${MainNavigationMenuListItemStyled}:first-of-type {
-    ${MainNavigationLinkStyled} {
-      color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
-    }
-  }
 
   @media screen and (min-width: 1024px) {
     width: fit-content;
@@ -215,6 +217,7 @@ export {
   MainNavigationMenuButtonStyled,
   MainNavigationMenuBoxStyled,
   MainNavigationLinkStyled,
+  MainNavigationActivedLinkStyled,
   MainNavigationContentWrapper,
   MainNavigationDivider,
   MainNavigationCloseMenuIcon,
