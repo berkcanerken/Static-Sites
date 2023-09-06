@@ -23,15 +23,15 @@ const RegulationsHeadingStyled = styled.h2`
 `;
 
 const RegulationsBoxStyled = styled(Box)`
-  width: 90% !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  margin: 10px !important;
-  padding: 10px !important;
-  border-radius: 24px !important;
-  box-shadow: 0 0 8px ${({ theme }) => (theme as typeof defaultTheme).text} !important;
-  text-align: left !important;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 24px;
+  box-shadow: 0 0 8px ${({ theme }) => (theme as typeof defaultTheme).text};
+  text-align: left;
 `;
 
 export {

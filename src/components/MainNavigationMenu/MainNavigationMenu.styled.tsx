@@ -14,39 +14,38 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { defaultTheme } from '@/providers/ThemeProvider';
 
 const MainNavigationMenuStyled = styled(AppBar)`
-  position: fixed !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 8px 0 !important;
-  background: ${({ theme }) =>
-    (theme as typeof defaultTheme).background} !important;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
   box-shadow: none;
   z-index: 1002;
 
   @media screen and (min-width: 1024px) {
-    position: relative !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    gap: 20px !important;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    gap: 20px;
   }
 
   @media screen and (min-width: 1280px) {
-    gap: 50px !important;
+    gap: 50px;
   }
 `;
 
 const MainNavigationMenuBoxStyled = styled(Box)`
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  padding: 0 40px !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 40px;
 
   @media screen and (min-width: 1024px) {
-    width: fit-content !important;
+    width: fit-content;
   }
 `;
 
@@ -73,142 +72,137 @@ const MainNavigationLogoWrapperOnMobile = styled.div`
 `;
 
 const MainNavigationMenuButtonStyled = styled(Button)`
-  min-width: 48px !important;
-  width: 48px !important;
-  height: 48px !important;
-  background: ${({ theme }) => theme.background} !important;
-  border-radius: 50% !important;
-  overflow: hidden !important;
+  min-width: 48px;
+  width: 48px;
+  height: 48px;
+  background: ${({ theme }) => theme.background};
+  border-radius: 50%;
+  overflow: hidden;
 
   &:hover,
   &:focus {
-    transform: scale(1.05) !important;
+    transform: scale(1.05);
   }
 
   @media screen and (min-width: 1024px) {
-    display: none !important;
+    display: none;
   }
 `;
 
 const MainNavigationHamburgerMenuIcon = styled(MenuRoundedIcon)`
-  width: 48px !important;
-  height: 48px !important;
-  background: ${({ theme }) =>
-    (theme as typeof defaultTheme).background} !important;
+  width: 48px;
+  height: 48px;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
 
   &:first-child {
-    fill: ${({ theme }) => (theme as typeof defaultTheme).item} !important;
+    fill: ${({ theme }) => (theme as typeof defaultTheme).item};
   }
 `;
 
 const MainNavigationCloseMenuIcon = styled(CloseRoundedIcon)`
-  width: 48px !important;
-  height: 48px !important;
-  background: ${({ theme }) =>
-    (theme as typeof defaultTheme).background} !important;
+  width: 48px;
+  height: 48px;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
 
   &:first-child {
-    fill: ${({ theme }) => (theme as typeof defaultTheme).item} !important;
+    fill: ${({ theme }) => (theme as typeof defaultTheme).item};
   }
 `;
 
 const MainNavigationContentWrapper = styled(Box).withConfig({
   shouldForwardProp: (prop) => !['isVisible'].includes(prop),
 })<{ isVisible: boolean }>`
-  display: ${({ isVisible = false }) =>
-    isVisible ? 'flex' : 'none'} !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
+  display: ${({ isVisible = false }) => (isVisible ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
   @media screen and (min-width: 1024px) {
-    display: flex !important;
-    align-items: flex-end !important;
-    width: fit-content !important;
+    display: flex;
+    align-items: flex-end;
+    width: fit-content;
   }
 `;
 
 const MainNavigationDivider = styled(Divider)`
-  display: none !important;
-  width: 90% !important;
-  background-color: ${({ theme }) =>
-    (theme as typeof defaultTheme).item} !important;
+  display: none;
+  width: 90%;
+  background-color: ${({ theme }) => (theme as typeof defaultTheme).item};
 
   @media screen and (min-width: 1024px) {
-    display: block !important;
+    display: block;
   }
 `;
 
 const MainNavigationMenuListItemStyled = styled(ListItem)`
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  width: 100% !important;
-  height: 40px !important;
-  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 0;
 
   @media screen and (min-width: 1024px) {
-    width: fit-content !important;
-    height: fit-content !important;
-    padding: 25px 0 !important;
+    width: fit-content;
+    height: fit-content;
+    padding: 25px 0;
   }
 `;
 
 const MainNavigationContactListStyled = styled(List)`
-  display: none !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 25px !important;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
 
   ${MainNavigationMenuListItemStyled} {
-    padding: 10px 0 !important;
+    padding: 10px 0;
   }
 
   @media screen and (min-width: 1024px) {
-    display: flex !important;
+    display: flex;
   }
 `;
 
 const MainNavigationLinkStyled = styled(Link)`
-  width: max-content !important;
-  color: ${({ theme }) => (theme as typeof defaultTheme).item} !important;
+  width: max-content;
+  color: ${({ theme }) => (theme as typeof defaultTheme).item};
 `;
 
 const MainNavigationText = styled(Typography)`
-  width: max-content !important;
-  color: ${({ theme }) => (theme as typeof defaultTheme).item} !important;
+  width: max-content;
+  color: ${({ theme }) => (theme as typeof defaultTheme).item};
 `;
 
 const MainNavigationMenuListStyled = styled(List)`
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
   ${MainNavigationMenuListItemStyled} {
     ${MainNavigationLinkStyled} {
-      font-weight: 600 !important;
+      font-weight: 600;
     }
   }
 
   ${MainNavigationMenuListItemStyled}:first-of-type {
     ${MainNavigationLinkStyled} {
-      color: ${({ theme }) =>
-        (theme as typeof defaultTheme).primaryItem} !important;
+      color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
     }
   }
 
   @media screen and (min-width: 1024px) {
-    width: fit-content !important;
-    flex-direction: row !important;
-    gap: 15px !important;
+    width: fit-content;
+    flex-direction: row;
+    gap: 15px;
   }
 
   @media screen and (min-width: 1280px) {
-    gap: 25px !important;
+    gap: 25px;
   }
 `;
 

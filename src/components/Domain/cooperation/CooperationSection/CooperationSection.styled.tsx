@@ -13,28 +13,28 @@ const CooperationSectionStyled = styled.section`
 `;
 
 const CooperationBoxStyled = styled(Link)`
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 24px !important;
-  box-shadow: 0 0 7px ${({ theme }) => (theme as typeof defaultTheme).text} !important;
-  padding: 10px !important;
-  width: 350px !important;
-  height: 300px !important;
-  /* margin: 20px 20px !important; */
-  cursor: pointer !important;
-  text-decoration: none !important;
-  padding: 20px !important;
-  transition: scale 0.2s linear !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  box-shadow: 0 0 7px ${({ theme }) => (theme as typeof defaultTheme).text};
+  padding: 10px;
+  width: 350px;
+  height: 300px;
+  /* margin: 20px 20px; */
+  cursor: pointer;
+  text-decoration: none;
+  padding: 20px;
+  transition: scale 0.2s linear;
 
   :hover {
-    scale: 1.03 !important;
+    scale: 1.03;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 400px !important;
-    height: 350px !important;
+    width: 400px;
+    height: 350px;
   }
 `;
 
