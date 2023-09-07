@@ -13,6 +13,8 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { defaultTheme } from '@/providers/ThemeProvider';
 import Link from 'next/link';
+import Chip, { ChipProps } from '@mui/material/Chip';
+import React from 'react';
 
 const MainNavigationMenuStyled = styled(AppBar)`
   position: fixed;
@@ -168,8 +170,25 @@ const MainNavigationContactListStyled = styled(List)`
 `;
 
 const MainNavigationLinkStyled = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: max-content;
   color: ${({ theme }) => (theme as typeof defaultTheme).item};
+`;
+
+const MainNavigationChipStyled = styled(Chip).attrs({
+  component: 'a',
+})<ChipProps<'a'>>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  color: ${({ theme }) => (theme as typeof defaultTheme).item};
+  font-size: 16px;
 `;
 
 const MainNavigationActivedLinkStyled = styled(Link).withConfig({
@@ -209,6 +228,7 @@ const MainNavigationMenuListStyled = styled(List)`
 `;
 
 export {
+  MainNavigationChipStyled,
   MainNavigationMenuStyled,
   MainNavigationMenuListItemStyled,
   MainNavigationMenuListStyled,

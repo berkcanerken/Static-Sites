@@ -7,7 +7,7 @@ const Animation = keyframes`
     }
 
     50% {
-        transform: scale(1.1) scaleY(1.25);
+        transform: scale(0.4);
     }
 
     100% {
@@ -31,18 +31,19 @@ const ButtonActionWrapperStyled = styled.div`
     display: flex;
     width: calc(100% + 15px);
     height: 30px;
-    background-color: #3b82f680;
+    background: #0000001f;
     border-radius: 24px;
     z-index: -1;
-    transform: scaleX(0.8) scaleY(0);
-    transition: transform 90ms ease-in-out;
-    opacity: 25%;
+    transform: scaleY(0);
+    opacity: 0%;
+    transition: opacity 300ms ease-in-out;
   }
 
   &:hover,
   &:focus-within {
     &::after {
       transform: scale(1);
+      opacity: 100%;
     }
   }
 

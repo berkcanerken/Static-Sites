@@ -21,11 +21,12 @@ import {
   MainNavigationHamburgerMenuIcon,
   MainNavigationCloseMenuIcon,
   MainNavigationContactListStyled,
-  MainNavigationText,
   MainNavigationActivedLinkStyled,
+  MainNavigationChipStyled,
 } from './MainNavigationMenu.styled';
 import { LogoApiType, MenuApiType } from '../types/server';
 import { ButtonActionWrapper } from '../ButtonActionWrapper';
+import { CopyContentButton } from '../CopyContentButton';
 
 type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];
@@ -117,14 +118,23 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
 
               return (
                 <MainNavigationMenuListItemStyled key={`${name} : ${uuid()}`}>
-                  <Image src={icon} alt={alt} width="26" height="26" />
-
                   {href ? (
-                    <MainNavigationLinkStyled href={href}>
-                      {name}
-                    </MainNavigationLinkStyled>
+                    <MainNavigationChipStyled
+                      label={name}
+                      component="a"
+                      href={href}
+                      clickable
+                      avatar={
+                        <Image src={icon} alt={alt} width="26" height="26" />
+                      }
+                    />
                   ) : (
-                    <MainNavigationText>{name}</MainNavigationText>
+                    <CopyContentButton
+                      textToBeCopied={name}
+                      icon={
+                        <Image src={icon} alt={alt} width="26" height="26" />
+                      }
+                    />
                   )}
                 </MainNavigationMenuListItemStyled>
               );
