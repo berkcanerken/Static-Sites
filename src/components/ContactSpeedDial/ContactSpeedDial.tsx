@@ -6,7 +6,7 @@ import {
   ContactSpeedDialSvgStyled,
 } from './SpeedDial.styled';
 import { getContactData } from './ContactSpeedDial.data';
-import { FooterCopyrightApiType, MenuApiType } from '../types/server';
+import { MenuApiType } from '../types/server';
 
 type ContactSpeedDialProps = {
   data: MenuApiType;
@@ -14,45 +14,42 @@ type ContactSpeedDialProps = {
 
 const ContactSpeedDial: React.FC<ContactSpeedDialProps> = ({ data }) => {
   const [action, setAction] = React.useState<string | null>(null);
-  const [isNearBottom, setIsNearBottom] = React.useState<boolean>(false);
+  const [speedDialBottomMargin, setSpeedDialBottomMargin] =
+    React.useState<number>(0);
 
   const contactSpeedDialRef = React.useRef<HTMLDivElement>(null);
-
   const contactData = getContactData();
 
-  const handleScroll = () => {
-    const element = contactSpeedDialRef.current;
-
-    if (element) {
-      const { bottom } = element.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const distance = windowHeight - bottom;
-      // console.log('distance: ', distance, bottom, windowHeight);
-      // console.log(
-      //   window.scrollHeight - window.clientHeight >= window.scrollTop,
-      //   distance,
-      //   bottom,
-      //   windowHeight
-      // );
-
-      if (distance <= 400) {
-        console.log('jest przy footerze');
-        setIsNearBottom(true);
-      }
-    }
-  };
-
   React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isNearBottom]);
+    window.addEventListener('scroll', () => {
+      const mainFooter = document.querySelector('#main-footer');
+      const footerHeight = mainFooter?.getBoundingClientRect().height;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight =
+        document.documentElement.scrollHeight - windowHeight;
+      const bottomDistance =
+        scrollPosition - documentHeight !== 0
+          ? (scrollPosition - documentHeight) * -1
+          : 0;
+
+      if (footerHeight) {
+        const elementBottomMargin =
+          bottomDistance - footerHeight < 0
+            ? (bottomDistance - footerHeight) * -1
+            : 0;
+
+        setSpeedDialBottomMargin(elementBottomMargin);
+      }
+    });
+  }, []);
 
   return (
     <ContactSpeedDialStyled
       ref={contactSpeedDialRef}
       ariaLabel="Contact"
       icon={<ContactSpeedDialIconStyled />}
-      isNearBottom={isNearBottom}
+      bottomMargin={speedDialBottomMargin}
     >
       {contactData.map((contact) => (
         <ContactSpeedDialActionStyled

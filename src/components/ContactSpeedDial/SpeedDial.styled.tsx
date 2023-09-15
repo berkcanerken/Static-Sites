@@ -4,21 +4,22 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import { SpeedDialAction } from '@mui/material';
 import { defaultTheme } from '@/providers/ThemeProvider';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
+import { pxToRem } from '@/handlers/pxToRem';
 
 const ContactSpeedDialStyled = styled(SpeedDial).withConfig({
-  shouldForwardProp: (prop) => !['isNearBottom'].includes(prop),
-})<{ isNearBottom: boolean }>`
+  shouldForwardProp: (prop) => !['bottomMargin'].includes(prop),
+})<{ bottomMargin: number }>`
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: ${pxToRem(16)};
+  bottom: ${pxToRem(16)};
   z-index: 1001;
-  margin-bottom: ${(isNearBootom) => (!isNearBootom ? '400px' : '0')};
+  margin-bottom: ${({ bottomMargin }) => pxToRem(bottomMargin)};
 
-  .css-7dv1rb-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
+  & > button {
     background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${pxToRem(1024)}) {
     display: none;
   }
 `;

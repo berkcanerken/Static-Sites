@@ -16,7 +16,7 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ data }) => {
   return (
-    <FooterStyled>
+    <FooterStyled id="main-footer">
       <FootersContentWrapperStyled>
         {getFooterContactData().map((link) => (
           <FooterAvaterStyled key={uuid()}>
