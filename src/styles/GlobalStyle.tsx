@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
         min-height: 100vh;
         height: 100%;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif !important;
     }
 
     @media (prefers-reduced-motion) {

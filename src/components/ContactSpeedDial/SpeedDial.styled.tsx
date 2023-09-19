@@ -38,6 +38,8 @@ const ContactSpeedDialSvgStyled = styled.svg``;
 
 const ContactSpeedDialAlertStyled = styled(MuiAlert)`
   background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
+  top: ${pxToRem(24)};
+  bottom: 0;
 `;
 
 export {

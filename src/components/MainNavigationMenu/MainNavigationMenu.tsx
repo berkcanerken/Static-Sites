@@ -23,10 +23,15 @@ import {
   MainNavigationContactListStyled,
   MainNavigationActivedLinkStyled,
   MainNavigationChipStyled,
+  MainNavigationMenuListButtonStyled,
 } from './MainNavigationMenu.styled';
 import { LogoApiType, MenuApiType } from '../types/server';
 import { ButtonActionWrapper } from '../ButtonActionWrapper';
 import { CopyContentButton } from '../CopyContentButton';
+import {
+  AutenticationDraverContext,
+  BooleanObject,
+} from '../AutenticationDraver';
 
 type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];
@@ -41,6 +46,38 @@ const getLinkWithoutBaseUrl = (link: string): string => {
 const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [indexOfCurrentLink, setIndexOfCurrentLink] = React.useState<number>(0);
+  const authenticationDraverContext = React.useContext(
+    AutenticationDraverContext
+  );
+
+  const setAutenthicationDraverValue = (value: string): void => {
+    const object = authenticationDraverContext?.booleanObject;
+    const setObject = authenticationDraverContext?.setBooleanObject;
+
+    if (object && setObject) {
+      const valueFromObject = Object.entries(object).find(
+        (current) => current[0] === value
+      );
+
+      if (valueFromObject && valueFromObject[1] === true) {
+        const result = { top: false, right: false, bottom: false, left: false };
+
+        setObject(result);
+      }
+
+      if (valueFromObject && valueFromObject[1] === false) {
+        const result = Object.entries(object).reduce((accumulator, current) => {
+          if (current[0] === valueFromObject[0]) {
+            return { ...accumulator, [current[0]]: true };
+          } else {
+            return { ...accumulator, [current[0]]: false };
+          }
+        }, {} as BooleanObject);
+
+        setObject(result);
+      }
+    }
+  };
 
   React.useEffect(() => {
     const currentUrl = window.location.href;
@@ -144,17 +181,29 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
           <MainNavigationDivider light />
 
           <MainNavigationMenuListStyled>
-            {MainNavigationData.map(({ href, name }, index) => (
-              <MainNavigationMenuListItemStyled key={`${name} : ${uuid()}`}>
+            {data[2].map((current, index) => (
+              <MainNavigationMenuListItemStyled
+                key={`${current.label} : ${uuid()}`}
+              >
                 <ButtonActionWrapper>
-                  <MainNavigationActivedLinkStyled
-                    isCurrentVisited={
-                      index === indexOfCurrentLink ? true : false
-                    }
-                    href={href}
-                  >
-                    {name}
-                  </MainNavigationActivedLinkStyled>
+                  {current.label === 'Logowanie' ? (
+                    <MainNavigationMenuListButtonStyled
+                      onClick={(): void => {
+                        setAutenthicationDraverValue('right');
+                      }}
+                    >
+                      {current.label}
+                    </MainNavigationMenuListButtonStyled>
+                  ) : (
+                    <MainNavigationActivedLinkStyled
+                      isCurrentVisited={
+                        index === indexOfCurrentLink ? true : false
+                      }
+                      href={current.url}
+                    >
+                      {current.label}
+                    </MainNavigationActivedLinkStyled>
+                  )}
                 </ButtonActionWrapper>
               </MainNavigationMenuListItemStyled>
             ))}

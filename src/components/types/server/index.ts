@@ -4,7 +4,7 @@ export type PlugApiType<T> = Partial<Record<string, unknown>> & T
 
 export type MenuItemApiType = {
     id: number;
-    href: string;
+    url: string;
     label: string;
     target: string | null;
 };

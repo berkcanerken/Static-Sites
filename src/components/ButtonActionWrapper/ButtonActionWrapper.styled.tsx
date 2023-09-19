@@ -7,7 +7,7 @@ const Animation = keyframes`
     }
 
     50% {
-        transform: scale(0.4);
+        transform: scale(1.1);
     }
 
     100% {

@@ -1,4 +1,5 @@
 import { colors, createTheme } from '@mui/material';
+import { Montserrat } from '@next/font/google';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
@@ -138,6 +139,8 @@ const defaultTheme = createTheme({
   },
   typography: {
     fontSize: 16,
+    fontFamily: 'Montserrat',
+
     h1: {
       fontSize: '96px',
       lineHeight: 1.3,
