@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { v4 as uuid } from 'uuid';
 import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
 import {
