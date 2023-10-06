@@ -63,18 +63,18 @@ const AccountDraver: React.FC = () => {
             onChange={handleChange}
             aria-label="Tabki"
           >
-            <AccountDraverTabStyled label="Rejestracja" value="1" />
+            <AccountDraverTabStyled label="Logowanie" value="1" />
 
-            <AccountDraverTabStyled label="Logowanie" value="2" />
+            <AccountDraverTabStyled label="Rejestracja" value="2" />
           </AccountDraverTabListStyled>
 
           <AccountDraverWrapperStyled>
             <TabPanel value="1">
-              <RegistrationForm />
+              <LoginForm />
             </TabPanel>
 
             <TabPanel value="2">
-              <LoginForm />
+              <RegistrationForm />
             </TabPanel>
           </AccountDraverWrapperStyled>
         </TabContext>

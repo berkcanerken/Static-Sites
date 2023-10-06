@@ -3,12 +3,12 @@ import { defaultTheme } from '@/providers/ThemeProvider';
 import { Box, Button, TextField } from '@mui/material';
 import { pxToRem } from '@/handlers/pxToRem';
 
-const LoginFormStyled = styled.div`
+const LoginFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: ${pxToRem(32)};
+  gap: ${pxToRem(48)};
   width: 100%;
   max-width: 90vw;
   margin: auto;
@@ -43,6 +43,14 @@ const LoginFormTextFieldStyled = styled(TextField)`
   }
 `;
 
+const LoginButtonWrappersStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: ${pxToRem(16)};
+`;
+
 const LoginFormButtonStyled = styled(Button)<{ isPrimaryButton: boolean }>`
   background: ${({ theme, isPrimaryButton }) =>
     isPrimaryButton
@@ -51,7 +59,8 @@ const LoginFormButtonStyled = styled(Button)<{ isPrimaryButton: boolean }>`
   color: ${({ theme }) => (theme as typeof defaultTheme).background};
   padding: 6px 15px;
   border-radius: 24px;
-  font-size: 16px;
+  text-transform: none;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
@@ -69,4 +78,5 @@ export {
   LoginFormBoxStyled,
   LoginFormTextFieldStyled,
   LoginFormButtonStyled,
+  LoginButtonWrappersStyled,
 };

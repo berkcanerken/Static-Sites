@@ -4,20 +4,13 @@ import {
   RegistrationFormBoxStyled,
   RegistrationFormTextFieldStyled,
   RegistrationFormButtonStyled,
+  RegistrationButtonWrappersStyled,
 } from './RegistrationForm.styled';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const RegistrationForm: React.FC = () => {
   return (
     <RegistrationFormStyled>
-      <RegistrationFormButtonStyled
-        type="button"
-        startIcon={<GoogleIcon />}
-        isPrimaryButton={false}
-      >
-        Kontynuuj z google
-      </RegistrationFormButtonStyled>
-
       <RegistrationFormBoxStyled>
         <RegistrationFormTextFieldStyled
           required
@@ -25,6 +18,7 @@ const RegistrationForm: React.FC = () => {
           label="Imię i Nazwisko"
           name="nameAndLastName"
           variant="standard"
+          autoComplete="name"
         />
 
         <RegistrationFormTextFieldStyled
@@ -33,6 +27,7 @@ const RegistrationForm: React.FC = () => {
           label="Email"
           name="email"
           variant="standard"
+          autoComplete="email"
         />
 
         <RegistrationFormTextFieldStyled
@@ -42,6 +37,7 @@ const RegistrationForm: React.FC = () => {
           name="password"
           type="password"
           variant="standard"
+          autoComplete="new-password"
         />
 
         <RegistrationFormTextFieldStyled
@@ -51,16 +47,27 @@ const RegistrationForm: React.FC = () => {
           name="confirmPassword"
           type="password"
           variant="standard"
+          autoComplete="new-password"
         />
       </RegistrationFormBoxStyled>
 
-      <RegistrationFormButtonStyled
-        type="submit"
-        variant="contained"
-        isPrimaryButton
-      >
-        Zarejestruj się
-      </RegistrationFormButtonStyled>
+      <RegistrationButtonWrappersStyled>
+        <RegistrationFormButtonStyled
+          type="button"
+          startIcon={<GoogleIcon />}
+          isPrimaryButton={false}
+        >
+          Kontynuuj z google
+        </RegistrationFormButtonStyled>
+
+        <RegistrationFormButtonStyled
+          type="submit"
+          variant="contained"
+          isPrimaryButton
+        >
+          Zarejestruj się
+        </RegistrationFormButtonStyled>
+      </RegistrationButtonWrappersStyled>
     </RegistrationFormStyled>
   );
 };
