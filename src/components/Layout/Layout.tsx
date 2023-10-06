@@ -9,7 +9,7 @@ import {
   LogoApiType,
   MenuApiType,
 } from '../types/server';
-import { AutenticationDraver } from '../AutenticationDraver';
+import { AccountDraver } from '../AccountDraver';
 
 export type LayoutProps = {
   mainMenuLogo: LogoApiType;
@@ -35,7 +35,7 @@ const Layout: React.FC<Props> = ({
     <LayoutStyled>
       <MainNavigationMenu data={[mainMenuLogo, mainMenuContact, mainMenu]} />
 
-      <AutenticationDraver />
+      <AccountDraver />
 
       <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
 

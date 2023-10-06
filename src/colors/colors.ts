@@ -6,6 +6,7 @@ const colors = {
     primaryItem: '#D0237A',
     placeHolder: '#D7D7D7',
     lightBorder: '#BDBDBF',
+    muiPanel: '#1976d2',
  };
 
 export { colors };

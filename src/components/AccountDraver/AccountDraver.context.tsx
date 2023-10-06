@@ -6,16 +6,16 @@ export type BooleanObject = {
   bottom: boolean;
   left: boolean;
 };
-type AutenticationDraverContextType = {
+type AccountDraverContextType = {
   booleanObject: BooleanObject;
   setBooleanObject: React.Dispatch<React.SetStateAction<BooleanObject>>;
 };
 
-const AutenticationDraverContext = React.createContext<
-  AutenticationDraverContextType | undefined
+const AccountDraverContext = React.createContext<
+  AccountDraverContextType | undefined
 >(undefined);
 
-const AutenticationDraverProvider: React.FC<React.PropsWithChildren> = ({
+const AccountDraverProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [booleanObject, setBooleanObject] = useState<BooleanObject>({
@@ -26,12 +26,10 @@ const AutenticationDraverProvider: React.FC<React.PropsWithChildren> = ({
   });
 
   return (
-    <AutenticationDraverContext.Provider
-      value={{ booleanObject, setBooleanObject }}
-    >
+    <AccountDraverContext.Provider value={{ booleanObject, setBooleanObject }}>
       {children}
-    </AutenticationDraverContext.Provider>
+    </AccountDraverContext.Provider>
   );
 };
 
-export { AutenticationDraverProvider, AutenticationDraverContext };
+export { AccountDraverProvider, AccountDraverContext };
