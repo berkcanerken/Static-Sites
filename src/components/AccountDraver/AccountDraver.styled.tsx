@@ -16,7 +16,7 @@ const AccountDraverWrapperStyled = styled.div`
 
 const AccountDraverTabListStyled = styled(TabList)`
   width: 100%;
-  margin-bottom: ${pxToRem(48)};
+  margin-bottom: 12%;
 `;
 
 const AccountDraverTabStyled = styled(Tab)`

@@ -41,15 +41,12 @@ const LoginForm: React.FC = () => {
 
   const validPassword = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const passwordValue = event.target.value;
-    const correctPasswordRegex =
-      /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$%^&*()_+={};':",.<>?])[A-Za-z\d!@#$%^&*()_+={};':",.<>?]{5,}$/;
     const withMinTwoUpperLettersRegex = /^(.*[A-Z]){2,}.*$/;
-    const withSpecjalSignRegex = /.*[!@#$%^&*()_+={};':",.<>?].*/;
 
     if (
       passwordValue.length >= 8 &&
       passwordValue.length <= 20 &&
-      correctPasswordRegex.test(passwordValue)
+      withMinTwoUpperLettersRegex.test(passwordValue)
     ) {
       const isCorrectState = [...isCorrect];
       isCorrectState[1] = false;
@@ -72,25 +69,11 @@ const LoginForm: React.FC = () => {
         setPasswordHelpText(
           `Twoje hasło powinno mieć conajmniej 8 liter, a ma ${passwordValue.length}`
         );
-      } else if (
-        !withMinTwoUpperLettersRegex.test(passwordValue) &&
-        withSpecjalSignRegex.test(passwordValue)
-      ) {
+      } else if (!withMinTwoUpperLettersRegex.test(passwordValue)) {
         setPasswordHelpText(
           `Hasło powinno z zawierać co najmniej 2 duże litery`
         );
-      } else if (
-        !withSpecjalSignRegex.test(passwordValue) &&
-        withMinTwoUpperLettersRegex.test(passwordValue)
-      ) {
-        setPasswordHelpText(
-          `Hasło powinno z zawierać co najmniej 1 znak specjalny`
-        );
-      } else if (!correctPasswordRegex.test(passwordValue)) {
-        setPasswordHelpText(
-          `Hasło powinno z zawierać co najmniej 2 duże litery i 1 znak specjalny`
-        );
-      } else if (20 < passwordValue.length) {
+      } else if (passwordValue.length > 20) {
         setPasswordHelpText(
           `Twoje hasło powinno mieć conajwyżej 20 liter, a ma ${passwordValue.length}`
         );
