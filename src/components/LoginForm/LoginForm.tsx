@@ -10,32 +10,37 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const LoginForm: React.FC = () => {
+  type LoginValuesType = {
+    identifier: string;
+    password: string;
+  };
+
   const [emailHelpText, setEmailHelpText] = React.useState<string>('');
   const [passwordHelpText, setPasswordHelpText] = React.useState<string>('');
-  const [isCorrect, setisCorrect] = React.useState<boolean[]>([false, false]);
+  const [fieldValues, setFieldValues] = React.useState<string[]>(['', '']);
 
   const validEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const emailValue = event.target.value;
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
 
     if (emailRegex.test(emailValue)) {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[0] = false;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[0] = emailValue;
 
       setEmailHelpText('');
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
     } else if (emailValue.length === 0) {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[0] = false;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[0] = '';
 
       setEmailHelpText('');
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
     } else {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[0] = true;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[0] = '';
 
       setEmailHelpText('To nie jest poprawny email');
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
     }
   };
 
@@ -48,22 +53,22 @@ const LoginForm: React.FC = () => {
       passwordValue.length <= 20 &&
       withMinTwoUpperLettersRegex.test(passwordValue)
     ) {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[1] = false;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[1] = passwordValue;
 
       setPasswordHelpText('');
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
     } else if (passwordValue.length === 0) {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[1] = false;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[1] = '';
 
       setPasswordHelpText('');
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
     } else {
-      const isCorrectState = [...isCorrect];
-      isCorrectState[1] = true;
+      const isCorrectState = [...fieldValues];
+      isCorrectState[1] = '';
 
-      setisCorrect(isCorrectState);
+      setFieldValues(isCorrectState);
 
       if (passwordValue.length < 8) {
         setPasswordHelpText(
@@ -81,12 +86,40 @@ const LoginForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.MouseEvent): void => {
+  const login = async (message: LoginValuesType) => {
+    try {
+      const response = await fetch(
+        'https://strapi-139719-0.cloudclusters.net/api/auth/local',
+        {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(message),
+        }
+      );
+
+      const unpackedRespnse = await response.json();
+
+      console.log(
+        'dane użytkownika: ',
+        unpackedRespnse?.user,
+        'token: ',
+        unpackedRespnse.jwt
+      );
+    } catch (error) {
+      console.error('logowanie nieudane: ', error);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+
+    login({ identifier: fieldValues[0], password: fieldValues[1] });
   };
 
   return (
-    <LoginFormStyled>
+    <LoginFormStyled onSubmit={handleSubmit}>
       <LoginFormBoxStyled>
         <LoginFormTextFieldStyled
           required
@@ -95,7 +128,7 @@ const LoginForm: React.FC = () => {
           name="email"
           variant="standard"
           autoComplete="email"
-          error={isCorrect[0]}
+          error={emailHelpText === '' ? false : true}
           helperText={emailHelpText}
           onChange={useDebounce(validEmail, 1500)}
         />
@@ -108,7 +141,7 @@ const LoginForm: React.FC = () => {
           type="password"
           variant="standard"
           autoComplete="current-password"
-          error={isCorrect[1]}
+          error={passwordHelpText === '' ? false : true}
           helperText={passwordHelpText}
           onChange={useDebounce(validPassword, 1500)}
         />
@@ -127,7 +160,6 @@ const LoginForm: React.FC = () => {
           type="submit"
           variant="contained"
           isPrimaryButton
-          onClick={handleSubmit}
         >
           Zaloguj się
         </LoginFormButtonStyled>

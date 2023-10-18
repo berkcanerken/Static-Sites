@@ -11,87 +11,30 @@ import { registrationInputs } from './RegistrationForm.data';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const RegistrationForm: React.FC = () => {
-  const inisialHelperTexts = Array.from(
+  const initialValuesOfFields = Array.from(
     { length: registrationInputs.length },
     () => ''
   );
 
-  const [helperText, setHelperText] =
-    React.useState<string[]>(inisialHelperTexts);
+  const [formFieldValues, setFormFieldValues] = React.useState<string[]>(
+    initialValuesOfFields
+  );
 
-  const validFormFields = (
+  const [helperText, setHelperText] = React.useState<string[]>(
+    initialValuesOfFields
+  );
+
+  const handleFormFields = (
     event: React.ChangeEvent<HTMLInputElement>,
-    type: string,
     index: number
   ): void => {
-    const fieldValue = event.target.value;
-    const currentMessages = [...helperText];
-    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
-    const withoutDangerousSingsRegex = /^[^<>'"&;=]*$/;
-    const correctPasswordRegex = /^(.*[A-Z]){2,}.*$/;
+    const currentFieldsValues = [...formFieldValues];
+    currentFieldsValues[index] = event.target.value;
 
-    if (fieldValue.length !== 0) {
-      switch (type) {
-        case 'email':
-          if (emailRegex.test(fieldValue)) {
-            currentMessages[index] = '';
-
-            setHelperText(currentMessages);
-          } else {
-            currentMessages[index] = 'To nie jest poprawny email';
-
-            setHelperText(currentMessages);
-          }
-
-          break;
-        case 'text':
-          if (withoutDangerousSingsRegex.test(fieldValue)) {
-            currentMessages[index] = '';
-
-            setHelperText(currentMessages);
-          } else {
-            currentMessages[index] =
-              'Imię i nazwisko nie może zawierać niebezpiecznych znaków';
-
-            setHelperText(currentMessages);
-          }
-
-          break;
-        case 'password':
-          if (fieldValue.length < 8) {
-            currentMessages[
-              index
-            ] = `Hasło powinno mieć co najmiej 8 liter, a ma ${fieldValue.length}`;
-
-            setHelperText(currentMessages);
-          } else if (
-            correctPasswordRegex.test(fieldValue) &&
-            fieldValue.length >= 8 &&
-            fieldValue.length <= 20
-          ) {
-            currentMessages[index] = '';
-
-            setHelperText(currentMessages);
-          } else if (!correctPasswordRegex.test(fieldValue)) {
-            currentMessages[index] =
-              'Hasło powinno mieć conajmiej 2 duże litery';
-
-            setHelperText(currentMessages);
-          } else if (fieldValue.length > 20) {
-            currentMessages[
-              index
-            ] = `Hasło powinno mieć co najwyżej 20 liter, a ma ${fieldValue.length}`;
-
-            setHelperText(currentMessages);
-          }
-          break;
-      }
-    } else {
-      currentMessages[index] = '';
-
-      setHelperText(currentMessages);
-    }
+    setFormFieldValues(currentFieldsValues);
   };
+
+  const handleSubmit = (): void => {};
 
   return (
     <RegistrationFormStyled>
@@ -111,7 +54,7 @@ const RegistrationForm: React.FC = () => {
               autoComplete={autoComplete}
               onChange={useDebounce(
                 (event: React.ChangeEvent<HTMLInputElement>) =>
-                  validFormFields(event, type, index),
+                  handleFormFields(event, index),
                 1500
               )}
             />
@@ -132,6 +75,7 @@ const RegistrationForm: React.FC = () => {
           type="submit"
           variant="contained"
           isPrimaryButton
+          onSubmit={handleSubmit}
         >
           Zarejestruj się
         </RegistrationFormButtonStyled>
