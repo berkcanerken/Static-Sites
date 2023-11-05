@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export type BooleanObject = {
   top: boolean;
@@ -18,7 +18,7 @@ const AccountDraverContext = React.createContext<
 const AccountDraverProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [booleanObject, setBooleanObject] = useState<BooleanObject>({
+  const [booleanObject, setBooleanObject] = React.useState<BooleanObject>({
     top: false,
     right: false,
     bottom: false,

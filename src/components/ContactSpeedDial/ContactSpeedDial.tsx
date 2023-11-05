@@ -3,13 +3,11 @@ import {
   ContactSpeedDialStyled,
   ContactSpeedDialIconStyled,
   ContactSpeedDialActionStyled,
-  ContactSpeedDialSvgStyled,
-  ContactSpeedDialAlertStyled,
 } from './SpeedDial.styled';
 import { getContactData } from './ContactSpeedDial.data';
 import { MenuApiType } from '../types/server';
 import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
-import { Snackbar } from '@mui/material';
+import { AlertContext } from '../Alert/Alert.context';
 
 type ContactSpeedDialProps = {
   data: MenuApiType;
@@ -17,11 +15,16 @@ type ContactSpeedDialProps = {
 
 const ContactSpeedDial: React.FC<ContactSpeedDialProps> = ({ data }) => {
   const [speedDialBottom, setSpeedDialBottom] = React.useState<number>(0);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [contactContent, setContactContent] = React.useState<string>('');
 
   const contactSpeedDialRef = React.useRef<HTMLDivElement>(null);
   const contactData = getContactData();
+
+  const Alert = React.useContext(AlertContext);
+
+  React.useEffect((): void => {
+    Alert?.setMessage(contactContent);
+  }, [contactContent]);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -59,32 +62,14 @@ const ContactSpeedDial: React.FC<ContactSpeedDialProps> = ({ data }) => {
     if (method === null) {
       handleActionItemClick(content);
       setContactContent(content);
-      setIsOpen(true);
     } else {
       window.location.href = method;
       setContactContent(content);
-      setIsOpen(true);
     }
-  };
-
-  const handleClose = (): void => {
-    setIsOpen(false);
   };
 
   return (
     <>
-      <Snackbar open={isOpen} autoHideDuration={2000} onClose={handleClose}>
-        <ContactSpeedDialAlertStyled
-          elevation={6}
-          variant="filled"
-          onClose={handleClose}
-          severity="success"
-          sx={{ width: '100%' }}
-        >
-          {contactContent}
-        </ContactSpeedDialAlertStyled>
-      </Snackbar>
-
       <ContactSpeedDialStyled
         ref={contactSpeedDialRef}
         ariaLabel="Contact"

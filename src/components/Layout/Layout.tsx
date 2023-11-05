@@ -10,6 +10,8 @@ import {
   MenuApiType,
 } from '../types/server';
 import { AccountDraver } from '../AccountDraver';
+import { Alert } from '../Alert';
+import { AlertProvider } from '../Alert/Alert.context';
 
 export type LayoutProps = {
   mainMenuLogo: LogoApiType;
@@ -33,15 +35,19 @@ const Layout: React.FC<Props> = ({
 }) => {
   return (
     <LayoutStyled>
-      <MainNavigationMenu data={[mainMenuLogo, mainMenuContact, mainMenu]} />
+      <AlertProvider>
+        <MainNavigationMenu data={[mainMenuLogo, mainMenuContact, mainMenu]} />
 
-      <AccountDraver />
+        <AccountDraver />
 
-      <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
+        <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
 
-      <ContactSpeedDial data={mainMenuContact} />
+        <ContactSpeedDial data={mainMenuContact} />
 
-      <Footer data={[footerSocial, footerPolicy, footerCopyright]} />
+        <Alert />
+
+        <Footer data={[footerSocial, footerPolicy, footerCopyright]} />
+      </AlertProvider>
     </LayoutStyled>
   );
 };

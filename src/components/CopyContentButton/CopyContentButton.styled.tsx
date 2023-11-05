@@ -17,12 +17,4 @@ const CopyContentButtonWrapperStyled = styled.div`
   position: relative;
 `;
 
-const CopyContentButtonAlertStyled = styled(MuiAlert)`
-  background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
-`;
-
-export {
-  CopyContentButtonStyled,
-  CopyContentButtonWrapperStyled,
-  CopyContentButtonAlertStyled,
-};
+export { CopyContentButtonStyled, CopyContentButtonWrapperStyled };

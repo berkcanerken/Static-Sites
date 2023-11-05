@@ -1,10 +1,9 @@
 import React from 'react';
 import {
-  CopyContentButtonAlertStyled,
   CopyContentButtonStyled,
   CopyContentButtonWrapperStyled,
 } from './CopyContentButton.styled';
-import Snackbar from '@mui/material/Snackbar';
+import { AlertContext } from '../Alert/Alert.context';
 
 type CopyContentButtonProps = {
   textToBeCopied: string;
@@ -15,20 +14,16 @@ const CopyContentButton: React.FC<CopyContentButtonProps> = ({
   icon,
   textToBeCopied,
 }) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const Alert = React.useContext(AlertContext);
 
   const handleChipClick = async () => {
     try {
       await navigator.clipboard.writeText(textToBeCopied);
 
-      setIsOpen(true);
+      Alert?.setMessage(textToBeCopied);
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleClose = (): void => {
-    setIsOpen(false);
   };
 
   return (
@@ -39,18 +34,6 @@ const CopyContentButton: React.FC<CopyContentButtonProps> = ({
         onClick={() => handleChipClick()}
         clickable
       />
-
-      <Snackbar open={isOpen} autoHideDuration={2000} onClose={handleClose}>
-        <CopyContentButtonAlertStyled
-          elevation={6}
-          variant="filled"
-          onClose={handleClose}
-          severity="success"
-          sx={{ width: '100%' }}
-        >
-          Skopiowano do schowka
-        </CopyContentButtonAlertStyled>
-      </Snackbar>
     </CopyContentButtonWrapperStyled>
   );
 };

@@ -12,7 +12,6 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import { RegistrationForm } from '../RegistrationForm';
 import { LoginForm } from '../LoginForm';
-import { defaultTheme } from '@/providers/ThemeProvider';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
