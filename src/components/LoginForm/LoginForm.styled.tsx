@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { defaultTheme } from '@/providers/ThemeProvider';
-import { Box, Button, TextField } from '@mui/material';
+import { Button, Switch, TextField, FormControlLabel } from '@mui/material';
 import { pxToRem } from '@/handlers/pxToRem';
 
-const LoginFormStyled = styled.form`
+const LoginFormStyled = styled.form.attrs(() => ({
+  noValidate: 'true',
+}))`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,8 +20,9 @@ const LoginFormHeadingStyled = styled.h2`
   color: ${({ theme }) => (theme as typeof defaultTheme).item};
 `;
 
-const LoginFormBoxStyled = styled(Box)`
+const LoginFormBoxStyled = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -29,38 +32,28 @@ const LoginFormBoxStyled = styled(Box)`
 
 const LoginFormTextFieldStyled = styled(TextField)`
   width: 100%;
-
-  @media screen and (min-width: 520px) {
-    width: ${pxToRem(200)};
-  }
-
-  @media screen and (min-width: 616px) {
-    width: ${pxToRem(220)};
-  }
-
-  @media screen and (min-width: 670px) {
-    width: ${pxToRem(250)};
-  }
+  max-width: ${pxToRem(350)};
 `;
 
 const LoginButtonWrappersStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: ${pxToRem(16)};
 `;
 
-const LoginFormButtonStyled = styled(Button)<{ isPrimaryButton: boolean }>`
+const LoginFormButtonStyled = styled(Button).withConfig({
+  shouldForwardProp: (prop) => !['isPrimaryButton'].includes(prop),
+})<{ isPrimaryButton: boolean }>`
   background: ${({ theme, isPrimaryButton }) =>
     isPrimaryButton
       ? (theme as typeof defaultTheme).primaryItem
       : (theme as typeof defaultTheme).item};
   color: ${({ theme }) => (theme as typeof defaultTheme).background};
-  padding: 6px 15px;
-  border-radius: 24px;
+  padding: ${pxToRem('6 15')};
+  border-radius: ${pxToRem(24)};
   text-transform: none;
-  white-space: nowrap;
 
   &:hover,
   &:focus {
@@ -72,6 +65,10 @@ const LoginFormButtonStyled = styled(Button)<{ isPrimaryButton: boolean }>`
   }
 `;
 
+const LoginFormSwitchStyled = styled(Switch)``;
+
+const LoginFormControlStyled = styled(FormControlLabel)``;
+
 export {
   LoginFormStyled,
   LoginFormHeadingStyled,
@@ -79,4 +76,6 @@ export {
   LoginFormTextFieldStyled,
   LoginFormButtonStyled,
   LoginButtonWrappersStyled,
+  LoginFormControlStyled,
+  LoginFormSwitchStyled,
 };

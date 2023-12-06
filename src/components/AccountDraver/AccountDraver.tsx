@@ -10,7 +10,6 @@ import {
 import { AccountDraverContext, BooleanObject } from './AccountDraver.context';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { RegistrationForm } from '../RegistrationForm';
 import { LoginForm } from '../LoginForm';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
@@ -74,7 +73,7 @@ const AccountDraver: React.FC = () => {
             </TabPanel>
 
             <TabPanel value="2">
-              <RegistrationForm />
+              <p>fdffd</p>
             </TabPanel>
           </AccountDraverWrapperStyled>
         </TabContext>

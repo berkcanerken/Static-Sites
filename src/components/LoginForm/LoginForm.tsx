@@ -5,156 +5,153 @@ import {
   LoginFormTextFieldStyled,
   LoginFormButtonStyled,
   LoginButtonWrappersStyled,
+  LoginFormControlStyled,
+  LoginFormSwitchStyled,
 } from './LoginForm.styled';
-import GoogleIcon from '@mui/icons-material/Google';
-import { useDebounce } from '@/hooks/useDebounce';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { loginSchema } from './LoginForm.validation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AlertContext } from '../Alert/Alert.context';
+import { signIn } from 'next-auth/react';
+
+type LoginFormType = {
+  email: string;
+  password: string;
+};
+
+type CredentialsType = {
+  identifier: string;
+  password: string;
+};
 
 const LoginForm: React.FC = () => {
-  type LoginValuesType = {
-    identifier: string;
-    password: string;
-  };
+  const toasts = React.useContext(AlertContext);
 
-  const [emailHelpText, setEmailHelpText] = React.useState<string>('');
-  const [passwordHelpText, setPasswordHelpText] = React.useState<string>('');
-  const [fieldValues, setFieldValues] = React.useState<string[]>(['', '']);
+  const objectWithInicialValues = {
+    email: '',
+    password: '',
+  } as LoginFormType;
 
-  const validEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const emailValue = event.target.value;
-    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+  const [isPasswordVisible, setIsPasswordVisible] =
+    React.useState<boolean>(false);
 
-    if (emailRegex.test(emailValue)) {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[0] = emailValue;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: objectWithInicialValues,
+    resolver: yupResolver(loginSchema),
+  });
 
-      setEmailHelpText('');
-      setFieldValues(isCorrectState);
-    } else if (emailValue.length === 0) {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[0] = '';
-
-      setEmailHelpText('');
-      setFieldValues(isCorrectState);
-    } else {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[0] = '';
-
-      setEmailHelpText('To nie jest poprawny email');
-      setFieldValues(isCorrectState);
-    }
-  };
-
-  const validPassword = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const passwordValue = event.target.value;
-    const withMinTwoUpperLettersRegex = /^(.*[A-Z]){2,}.*$/;
-
-    if (
-      passwordValue.length >= 8 &&
-      passwordValue.length <= 20 &&
-      withMinTwoUpperLettersRegex.test(passwordValue)
-    ) {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[1] = passwordValue;
-
-      setPasswordHelpText('');
-      setFieldValues(isCorrectState);
-    } else if (passwordValue.length === 0) {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[1] = '';
-
-      setPasswordHelpText('');
-      setFieldValues(isCorrectState);
-    } else {
-      const isCorrectState = [...fieldValues];
-      isCorrectState[1] = '';
-
-      setFieldValues(isCorrectState);
-
-      if (passwordValue.length < 8) {
-        setPasswordHelpText(
-          `Twoje hasło powinno mieć conajmniej 8 liter, a ma ${passwordValue.length}`
-        );
-      } else if (!withMinTwoUpperLettersRegex.test(passwordValue)) {
-        setPasswordHelpText(
-          `Hasło powinno z zawierać co najmniej 2 duże litery`
-        );
-      } else if (passwordValue.length > 20) {
-        setPasswordHelpText(
-          `Twoje hasło powinno mieć conajwyżej 20 liter, a ma ${passwordValue.length}`
-        );
-      }
-    }
-  };
-
-  const login = async (message: LoginValuesType) => {
+  const handleSignIn = async (credentials: CredentialsType) => {
     try {
-      const response = await fetch(
-        'https://strapi-139719-0.cloudclusters.net/api/auth/local',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(message),
-        }
-      );
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: credentials.identifier,
+        password: credentials.password,
+      });
 
-      const unpackedRespnse = await response.json();
+      if (!result?.ok) {
+        toasts?.setMessage({
+          text: 'Email lub hasło jest błędne',
+          icon: <ReportGmailerrorredRoundedIcon />,
+          color: 'error',
+          severity: 'error',
+        });
+      } else {
+        console.log('odpowiedź: ', result);
 
-      console.log(
-        'dane użytkownika: ',
-        unpackedRespnse?.user,
-        'token: ',
-        unpackedRespnse.jwt
-      );
+        toasts?.setMessage({
+          text: `Witaj`,
+          icon: <CheckCircleRoundedIcon />,
+          color: 'success',
+          severity: 'success',
+        });
+      }
     } catch (error) {
-      console.error('logowanie nieudane: ', error);
+      console.error(error);
+
+      toasts?.setMessage({
+        text: 'Problem z odpowiedzią servera',
+        icon: <ReportGmailerrorredRoundedIcon />,
+        color: 'error',
+        severity: 'error',
+      });
     }
   };
 
-  const handleSubmit = (event: React.FormEvent): void => {
+  const handleSubmitValid: SubmitHandler<LoginFormType> = (formValues) => {
+    const credentials: CredentialsType = {
+      identifier: formValues.email,
+      password: formValues.password,
+    };
+
+    handleSignIn(credentials);
+
+    toasts?.setMessage({
+      text: 'Info: Zapytanie zostało wysłane na server',
+      icon: <CheckCircleRoundedIcon />,
+      color: 'info',
+      severity: 'info',
+    });
+  };
+
+  const handleSubmitInvalid = () => {
+    toasts?.setMessage({
+      text: 'Błąd: Pole formularza są wypełnione niepoprawnie',
+      icon: <ReportGmailerrorredRoundedIcon />,
+      color: 'error',
+      severity: 'error',
+    });
+  };
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    login({ identifier: fieldValues[0], password: fieldValues[1] });
+    handleSubmit(handleSubmitValid, handleSubmitInvalid)(event);
   };
 
   return (
-    <LoginFormStyled onSubmit={handleSubmit}>
+    <LoginFormStyled onSubmit={onSubmit}>
       <LoginFormBoxStyled>
         <LoginFormTextFieldStyled
           required
+          {...register('email')}
           id="email"
           label="Email"
           name="email"
           variant="standard"
           autoComplete="email"
-          error={emailHelpText === '' ? false : true}
-          helperText={emailHelpText}
-          onChange={useDebounce(validEmail, 1500)}
+          error={!!errors.email}
+          helperText={errors.email ? errors?.email.message : null}
         />
 
         <LoginFormTextFieldStyled
           required
+          {...register('password')}
           id="password"
           label="Hasło"
           name="password"
-          type="password"
+          type={isPasswordVisible ? 'text' : 'password'}
           variant="standard"
           autoComplete="current-password"
-          error={passwordHelpText === '' ? false : true}
-          helperText={passwordHelpText}
-          onChange={useDebounce(validPassword, 1500)}
+          error={!!errors.password}
+          helperText={errors.password ? errors?.password.message : null}
         />
       </LoginFormBoxStyled>
 
       <LoginButtonWrappersStyled>
-        <LoginFormButtonStyled
-          type="button"
-          startIcon={<GoogleIcon />}
-          isPrimaryButton={false}
-        >
-          Kontynuuj z google
-        </LoginFormButtonStyled>
+        <LoginFormControlStyled
+          label="Pokaż hasło"
+          control={
+            <LoginFormSwitchStyled
+              onChange={() => setIsPasswordVisible(!isPasswordVisible)}
+            />
+          }
+        />
 
         <LoginFormButtonStyled
           type="submit"

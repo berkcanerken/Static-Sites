@@ -4,17 +4,24 @@ import { ThemeProvider } from '@/providers/ThemeProvider';
 import GlobalStyle from '@/styles/GlobalStyle';
 import { StyledEngineProvider } from '@mui/material';
 import { AccountDraverProvider } from '@/components/AccountDraver';
+import { SessionProvider } from 'next-auth/react';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps: props }: AppProps) => {
+  const { session, ...pageProps } = props;
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider>
-        <GlobalStyle />
+        <SessionProvider session={session}>
+          <GlobalStyle />
 
-        <AccountDraverProvider>
-          <Component {...pageProps} />
-        </AccountDraverProvider>
+          <AccountDraverProvider>
+            <Component {...pageProps} />
+          </AccountDraverProvider>
+        </SessionProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   );
-}
+};
+
+export default App;

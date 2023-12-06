@@ -28,7 +28,7 @@ const Alert: React.FC = () => {
   return (
     <Snackbar
       open={isAlertOpen}
-      autoHideDuration={2000}
+      autoHideDuration={4000}
       onClose={() => handleAlertClose()}
     >
       <AlertStyled
