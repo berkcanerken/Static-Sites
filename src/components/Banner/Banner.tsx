@@ -9,6 +9,7 @@ import {
 } from './Banner.styled';
 import { bannerData } from './Banner.data';
 import { InsideLink } from '../InsideLink';
+import { colors } from '@/colors';
 
 const Banner = () => {
   return (
@@ -38,7 +39,12 @@ const Banner = () => {
           height={bannerData.link.Image.height}
         ></BannerLogoStyled>
 
-        <InsideLink isPrimary={true} hyperLink={bannerData.link.link}>
+        <InsideLink
+          padding="6 15"
+          borderRadius="24"
+          hyperLink={bannerData.link.link}
+          isBoxShadowExist
+        >
           {bannerData.link.text}
         </InsideLink>
       </BannerWrapperStyled>

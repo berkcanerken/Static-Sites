@@ -7,6 +7,7 @@ import {
 } from './Slideshow.styled';
 import { v4 as uuid } from 'uuid';
 import { InsideLink } from '../InsideLink';
+import { colors } from '@/colors';
 
 export type SlideProps = {
   image: {
@@ -59,7 +60,14 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides }) => {
 
           <SlideshowTextStyled>{date}</SlideshowTextStyled>
 
-          <InsideLink hyperLink={link.link}>{link.text}</InsideLink>
+          <InsideLink
+            padding="6 15"
+            borderRadius="24"
+            hyperLink={link.link}
+            isBoxShadowExist
+          >
+            {link.text}
+          </InsideLink>
         </SlideshowItemStyled>
       ))}
     </SlideshowStyled>

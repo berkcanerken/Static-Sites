@@ -1,19 +1,32 @@
 import React from 'react';
-import { InsideLinkStyled } from './InsideLink.styled';
+import { InsideLinkFABStyled, InsideLinkStyled } from './InsideLink.styled';
+import { defaultTheme } from '@/providers/ThemeProvider';
+import { colors } from '@/colors';
 
 type InsideLinkProps = React.PropsWithChildren<{
   hyperLink?: string;
-  isPrimary?: boolean;
+  borderRadius?: string;
+  padding?: string | 0;
+  isBoxShadowExist?: boolean;
 }>;
 
 const InsideLink: React.FC<InsideLinkProps> = ({
   hyperLink = '/',
-  isPrimary = false,
   children,
+  borderRadius = '50%',
+  padding = 0,
+  isBoxShadowExist = false,
 }) => {
   return (
-    <InsideLinkStyled isPrimary={isPrimary} href={hyperLink}>
-      {children}
+    <InsideLinkStyled href={hyperLink} passHref>
+      <InsideLinkFABStyled
+        borderRadius={borderRadius}
+        color={'primary'}
+        padding={padding}
+        isBoxShadowExist={isBoxShadowExist}
+      >
+        {children}
+      </InsideLinkFABStyled>
     </InsideLinkStyled>
   );
 };

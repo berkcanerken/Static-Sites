@@ -1,31 +1,27 @@
-import { defaultTheme } from '@/providers/ThemeProvider';
+import { pxToRem } from '@/handlers/pxToRem';
+import { Fab } from '@mui/material';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const InsideLinkStyled = styled(Link).withConfig({
-  shouldForwardProp: (prop) => !['isPrimary'].includes(prop),
-})<{ isPrimary: boolean }>`
-  padding: 10px 50px;
-  border: solid 2px
-    ${({ theme, isPrimary }) =>
-      isPrimary
-        ? (theme as typeof defaultTheme).primaryItem
-        : (theme as typeof defaultTheme).item};
-  border-radius: 24px;
-  background: ${({ theme, isPrimary }) =>
-    isPrimary
-      ? (theme as typeof defaultTheme).primaryItem
-      : (theme as typeof defaultTheme).item};
-  color: ${({ theme }) => (theme as typeof defaultTheme).background};
-  font-size: 18px;
+const InsideLinkStyled = styled(Link)``;
 
-  &:hover {
-    background: ${({ theme }) => (theme as typeof defaultTheme).background};
-    color: ${({ theme, isPrimary }) =>
-      isPrimary
-        ? (theme as typeof defaultTheme).primaryItem
-        : (theme as typeof defaultTheme).item};
-  }
+const InsideLinkFABStyled = styled(Fab).withConfig({
+  shouldForwardProp: (prop) =>
+    !['borderRadius', 'padding', 'isBoxShadowExist'].includes(prop),
+})<{
+  borderRadius: string;
+  padding: string | 0;
+  isBoxShadowExist: boolean;
+}>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: ${pxToRem(10)};
+  width: fit-content;
+  height: fit-content;
+  padding: ${({ padding }) => pxToRem(padding)};
+  border-radius: ${({ borderRadius }) => pxToRem(borderRadius)};
+  ${({ isBoxShadowExist }) => !isBoxShadowExist && `box-shadow: none;`}
 `;
 
-export { InsideLinkStyled };
+export { InsideLinkStyled, InsideLinkFABStyled };
