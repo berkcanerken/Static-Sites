@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import GlobalStyle from '@/styles/GlobalStyle';
 import { StyledEngineProvider } from '@mui/material';
-import { AccountDraverProvider } from '@/components/AccountDraver';
 import { SessionProvider } from 'next-auth/react';
+import { DraverProvider, Draver } from '@/components/Draver';
 
 const App = ({ Component, pageProps: props }: AppProps) => {
   const { session, ...pageProps } = props;
@@ -15,9 +15,11 @@ const App = ({ Component, pageProps: props }: AppProps) => {
         <SessionProvider session={session}>
           <GlobalStyle />
 
-          <AccountDraverProvider>
+          <DraverProvider>
             <Component {...pageProps} />
-          </AccountDraverProvider>
+
+            <Draver />
+          </DraverProvider>
         </SessionProvider>
       </ThemeProvider>
     </StyledEngineProvider>

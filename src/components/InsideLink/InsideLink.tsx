@@ -21,7 +21,6 @@ const InsideLink: React.FC<InsideLinkProps> = ({
     <InsideLinkStyled href={hyperLink} passHref>
       <InsideLinkFABStyled
         borderRadius={borderRadius}
-        color={'primary'}
         padding={padding}
         isBoxShadowExist={isBoxShadowExist}
       >

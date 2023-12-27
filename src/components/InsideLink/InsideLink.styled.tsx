@@ -1,4 +1,5 @@
 import { pxToRem } from '@/handlers/pxToRem';
+import { defaultTheme } from '@/providers/ThemeProvider';
 import { Fab } from '@mui/material';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -21,7 +22,9 @@ const InsideLinkFABStyled = styled(Fab).withConfig({
   height: fit-content;
   padding: ${({ padding }) => pxToRem(padding)};
   border-radius: ${({ borderRadius }) => pxToRem(borderRadius)};
-  ${({ isBoxShadowExist }) => !isBoxShadowExist && `box-shadow: none;`}
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  ${({ isBoxShadowExist }) =>
+    !isBoxShadowExist && `box-shadow: none !important;`}
 `;
 
 export { InsideLinkStyled, InsideLinkFABStyled };
