@@ -25,10 +25,10 @@ import {
   MainNavigationChipStyled,
   MainNavigationMenuListButtonStyled,
 } from './MainNavigationMenu.styled';
-import { LogoApiType, MenuApiType } from '../types/server';
+import { LogoApiType, MenuApiType } from '../../types/server';
 import { ButtonActionWrapper } from '../ButtonActionWrapper';
 import { CopyContentButton } from '../CopyContentButton';
-import { AccountDraverContext, BooleanObject } from '../AccountDraver';
+import { DraverContext, DraverObjectType } from '../Draver';
 
 type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];

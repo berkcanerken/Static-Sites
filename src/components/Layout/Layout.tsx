@@ -9,7 +9,7 @@ import {
   LogoApiType,
   MenuApiType,
 } from '../types/server';
-import { AccountDraver } from '../AccountDraver';
+import { Draver } from '../Draver';
 import { Alert } from '../Alert';
 import { AlertProvider } from '../Alert/Alert.context';
 
@@ -37,8 +37,6 @@ const Layout: React.FC<Props> = ({
     <LayoutStyled>
       <AlertProvider>
         <MainNavigationMenu data={[mainMenuLogo, mainMenuContact, mainMenu]} />
-
-        <AccountDraver />
 
         <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
 

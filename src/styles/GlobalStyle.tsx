@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
           (theme as typeof defaultTheme).background};
         position: relative;
         overflow-x: hidden;
-        min-height: 100vh;
+        min-height: 100dvh;
         height: 100%;
         font-family: 'Montserrat', sans-serif !important;
     }

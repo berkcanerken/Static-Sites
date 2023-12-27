@@ -1,7 +1,8 @@
 import { pxToRem } from '@/handlers/pxToRem';
 import { defaultTheme } from '@/providers/ThemeProvider';
-import Link from 'next/link';
 import styled from 'styled-components';
+import Tabs from '@mui/material/Tabs';
+import { Button, IconButton } from '@mui/material';
 
 const ArticleStyled = styled.article`
   display: flex;
@@ -10,28 +11,123 @@ const ArticleStyled = styled.article`
   align-items: center;
   gap: ${pxToRem(10)};
   width: 100vw;
-  min-height: 100vh;
+  height: 100dvh;
   padding: ${pxToRem('0 10')};
   background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
-`;
 
-const LinkStyled = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media screen and (min-width: 1024px) {
+    padding: ${pxToRem('0 25')};
+  }
 `;
 
 const AdministrationPanelHeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   gap: ${pxToRem(10)};
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
-  width: calc(100vw - ${pxToRem(20)});
-  min-height: ${pxToRem(72)};
-  padding: ${pxToRem('8 20')};
-  margin: ${pxToRem(10)};
-  border: ${pxToRem(6)};
+  width: 100%;
+  min-height: ${pxToRem(48)};
+  margin: ${pxToRem('0 10')};
+  border-radius: ${pxToRem('0 0 12 12')};
+  overflow: hidden;
+
+  @media screen and (min-width: 1024px) {
+    padding: ${pxToRem('4 20')};
+  }
 `;
 
-export { ArticleStyled, LinkStyled, AdministrationPanelHeaderStyled };
+const ContentWrapperStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: ${pxToRem(10)};
+  width: 100%;
+  min-height: calc(100dvh - ${pxToRem(86)});
+  margin: ${pxToRem('auto auto 10')};
+  background: transparent;
+`;
+
+const TabsStyled = styled(Tabs)`
+  display: flex;
+  align-self: center;
+  max-width: 100dvh;
+  height: fit-content;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  border-radius: ${pxToRem(12)};
+`;
+
+const ContentStyled = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: ${pxToRem(10)};
+  width: 100%;
+  min-height: calc(100dvh - ${pxToRem(86)});
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  border-radius: ${pxToRem(12)};
+  padding: ${pxToRem('10 0')};
+`;
+
+const AdministrationPanelNavigationButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+`;
+
+const AdministrationPanelIconButtonStyled = styled(IconButton).withConfig({
+  shouldForwardProp: (prop) => !['displayNoneOnDesktop'].includes(prop),
+})<{ displayNoneOnDesktop: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: 1024px) {
+    display: ${({ displayNoneOnDesktop }) =>
+      displayNoneOnDesktop ? 'none' : 'flex'};
+  }
+`;
+
+const AdministrationPanelNavigationWrapperStyled = styled.div`
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100dvh - ${pxToRem(86)});
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+  }
+`;
+
+const AdministrationPanelAccountButtonsWrapperStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  background: ${({ theme }) => (theme as typeof defaultTheme).background};
+  border-radius: ${pxToRem(12)};
+  overflow: hidden;
+`;
+
+const AdministrationPanelAccountButtonStyled = styled(Button)`
+  width: 100%;
+  min-height: ${pxToRem(72)};
+`;
+
+export {
+  ArticleStyled,
+  ContentWrapperStyled,
+  AdministrationPanelHeaderStyled,
+  TabsStyled,
+  ContentStyled,
+  AdministrationPanelIconButtonStyled,
+  AdministrationPanelNavigationButtonsWrapper,
+  AdministrationPanelNavigationWrapperStyled,
+  AdministrationPanelAccountButtonsWrapperStyled,
+  AdministrationPanelAccountButtonStyled,
+};

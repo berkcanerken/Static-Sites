@@ -8,7 +8,7 @@ const pxToRem = (px: number | string): string => {
     } else {
         const arrayWithValues = (px as string).split(' ');
         const result = arrayWithValues.reduce((accumulator, current) => {
-            if (current.includes('rem') || current.includes('em') || current.includes('%')) {
+            if (current.includes('rem') || current.includes('em') || current.includes('%') || current.includes('auto')) {
                 return `${accumulator} ${current}`;
             }
 
