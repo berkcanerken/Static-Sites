@@ -19,27 +19,24 @@ const Breadcrumbs: React.FC = () => {
     return resolvedPath;
   };
 
-  const fullPaths = (givenIndex: number): string => {
-    const resolvedPaths = pathChunks(currentPath).filter(
-      (_, index) => index <= givenIndex
-    );
-
-    return '';
-  };
-
-  console.log('dupa', fullPaths(0));
-
   return (
     <BreadcrumbsStyled>
       <InsideLink borderRadius="6" padding="0 10" hyperLink="/">
         <HomeIcon />
       </InsideLink>
 
-      {pathChunks(currentPath).map((url) => {
+      {pathChunks(currentPath).map((url, index, array) => {
         const nameFromUrl = url.replace(/-/g, ' ');
+        const prefix = array.filter((_, indentifier) => indentifier < index);
+        const currentUrl = `/${[...prefix, url].join('/')}`;
 
         return (
-          <InsideLink borderRadius="6" padding="0 10" hyperLink={url}>
+          <InsideLink
+            borderRadius="6"
+            padding="0 10"
+            hyperLink={currentUrl}
+            fontSize={13}
+          >
             {nameFromUrl}
           </InsideLink>
         );
