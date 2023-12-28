@@ -55,6 +55,22 @@ const TabsStyled = styled(Tabs)`
   height: fit-content;
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   border-radius: ${pxToRem(12)};
+
+  & .MuiTabs-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    right: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      width: ${pxToRem(2)};
+      height: ${pxToRem(48)};
+      background: ${({ theme }) => (theme as typeof defaultTheme).muiPanel};
+    }
+  }
 `;
 
 const ContentStyled = styled.article`
