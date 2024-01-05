@@ -22,7 +22,6 @@ import { AdministrationPanelMobileMenu } from './AdministrationPanelMobileMenu';
 import {
   administrationPanelAccountItems,
   administrationPanelNavigationItem,
-  flattedArrayOfUrl,
 } from './AdministrationPanelLayout.data';
 import { Divider } from '@/components/Divider';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
