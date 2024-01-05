@@ -2,6 +2,7 @@ import { pxToRem } from '@/handlers/pxToRem';
 import { Tab, Tabs } from '@mui/material';
 import styled from 'styled-components';
 import { Button } from '@mui/material';
+import Link from 'next/link';
 
 const AdministrationPanelMobileMenuStyled = styled(Tabs)`
   display: flex;
@@ -15,7 +16,9 @@ const AdministrationPanelMobileMenuStyled = styled(Tabs)`
   }
 `;
 
-const AdministrationPanelMobileMenuItemsStyled = styled(Tab)`
+const AdministrationPanelMobileMenuItemsStyled = styled(Tab).attrs(() => ({
+  LinkComponent: Link,
+}))<React.ComponentProps<typeof Tab> & React.ComponentProps<typeof Link>>`
   flex-direction: row;
   justify-content: flex-start;
   gap: ${pxToRem(20)};

@@ -22,22 +22,33 @@ import { AdministrationPanelMobileMenu } from './AdministrationPanelMobileMenu';
 import {
   administrationPanelAccountItems,
   administrationPanelNavigationItem,
+  flattedArrayOfUrl,
 } from './AdministrationPanelLayout.data';
 import { Divider } from '@/components/Divider';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { getValueFromPath } from './AdministrationPanelLayout.handlers';
+import Link from 'next/link';
 
 type AdministrationPanelLayoutProps = React.PropsWithChildren;
+
+export type TabsStatesType = {
+  previous: number;
+  current: number;
+};
 
 const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
   children,
 }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    const path = window.location.pathname;
+    const lastChunkOfPath = path.split('/').reverse()[0];
+
+    setValue(getValueFromPath(lastChunkOfPath));
+  }, []);
 
   const draverContext = React.useContext(DraverContext);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
   const accountSettings = (): React.ReactNode => <h2>Ustawienia konta</h2>;
 
@@ -108,18 +119,24 @@ const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
         <AdministrationPanelNavigationWrapperStyled>
           <TabsStyled
             value={value}
-            onChange={handleChange}
             variant="scrollable"
             aria-label="visible arrows tabs example"
             orientation="vertical"
+            role="navigation"
             sx={{
               [`& .${tabsClasses.scrollButtons}`]: {
                 '&.Mui-disabled': { opacity: 0.3 },
               },
             }}
           >
-            {administrationPanelNavigationItem().map(({ name, icon }) => (
-              <Tab key={name} icon={icon} label={name} />
+            {administrationPanelNavigationItem().map(({ name, icon, link }) => (
+              <Tab
+                key={name}
+                icon={icon}
+                label={name}
+                LinkComponent={Link}
+                href={link ? link : ''}
+              />
             ))}
           </TabsStyled>
 

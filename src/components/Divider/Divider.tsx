@@ -2,7 +2,7 @@ import React from 'react';
 import { DividerStyled } from '../Draver/Draver.styled';
 
 const Divider: React.FC = () => {
-  return <DividerStyled />;
+  return <DividerStyled light />;
 };
 
 export { Divider };

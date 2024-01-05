@@ -42,6 +42,7 @@ const ExitIcon = styled(CloseRoundedIcon)`
 
 const DividerStyled = styled(Divider)`
   width: 100%;
+  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
 `;
 
 export {

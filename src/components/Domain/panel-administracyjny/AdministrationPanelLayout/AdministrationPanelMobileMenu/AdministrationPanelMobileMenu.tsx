@@ -11,14 +11,25 @@ import {
   administrationPanelAccountItems,
 } from '../AdministrationPanelLayout.data';
 import { Divider } from '@/components/Divider';
+import { DirectionObject, DraverContext } from '@/components/Draver';
 
 const AdministrationPanelMobileMenu: React.FC = () => {
   const [value, setValue] = React.useState(0);
+  const draverContext = React.useContext(DraverContext);
 
   const userAccess = 'trainer';
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const handleTabLinkClick = (event: React.MouseEvent): void => {
+    draverContext?.setDraverObject({
+      directionObject: {
+        right: false,
+      } as DirectionObject,
+      children: draverContext.draverObject.children,
+    });
   };
 
   return (
@@ -35,11 +46,13 @@ const AdministrationPanelMobileMenu: React.FC = () => {
           },
         }}
       >
-        {administrationPanelNavigationItem().map(({ name, icon }) => (
+        {administrationPanelNavigationItem().map(({ name, icon, link }) => (
           <AdministrationPanelMobileMenuItemsStyled
             key={name}
             icon={icon}
             label={name}
+            href={link ? link : ''}
+            onClick={handleTabLinkClick}
           />
         ))}
       </AdministrationPanelMobileMenuStyled>
@@ -48,7 +61,7 @@ const AdministrationPanelMobileMenu: React.FC = () => {
 
       <AdminstrationPanelMobileMenuAccountWrapperStyled>
         {administrationPanelAccountItems().map(({ name, icon }) => (
-          <AdminstrationPanelMobileMenuButtonStyled startIcon={icon}>
+          <AdminstrationPanelMobileMenuButtonStyled key={name} startIcon={icon}>
             {name}
           </AdminstrationPanelMobileMenuButtonStyled>
         ))}
