@@ -11,6 +11,7 @@ type AccessType = 'trainer' | 'competitor' | 'full';
 
 type NavigationPanelItemType = {
   name: string;
+  contentText?: string;
   urlIdentifier: string;
   icon: React.ReactElement;
   typeOfItem: 'link' | 'button';
@@ -29,6 +30,9 @@ const administrationPanelNavigationItem = (): Omit<
 >[] => [
   {
     name: 'Panel',
+    contentText: `Zarządzaj swoją platformą z łatwością! Panel administracyjny
+    dostarcza narzędzi, które umożliwiają pełną kontrolę nad
+    treściami, użytkownikami i ustawieniami.`,
     urlIdentifier: 'panel',
     icon: <AccountTreeRoundedIcon />,
     link: '/panel',
@@ -37,6 +41,7 @@ const administrationPanelNavigationItem = (): Omit<
 
   {
     name: 'Ustawienia',
+    contentText: `Dostosuj ustawienia z łatwością! Precyzyjnie kontroluj konfigurację, personalizuj interfejs i dostosuj preferencje zgodnie z twoimi potrzebami.`,
     urlIdentifier: 'ustawienia',
     icon: <SettingsIcon />,
     link: '/panel/ustawienia',
@@ -45,6 +50,7 @@ const administrationPanelNavigationItem = (): Omit<
 
   {
     name: 'Zarządzaj zawodnikami',
+    contentText: `Profesjonalne zarządzanie zawodnikami! Wspieraj rozwój zawodników, by osiągnęli swój pełny potencjał.`,
     urlIdentifier: 'zarzadzaj-zawodnikami',
     icon: <Diversity3RoundedIcon />,
     link: '/panel/zarzadzaj-zawodnikami',
@@ -53,6 +59,7 @@ const administrationPanelNavigationItem = (): Omit<
 
   {
     name: 'Zarządaj klubem',
+    contentText: `Efektywne zarządzanie klubem! Skutecznie organizuj zespoły, harmonogramy i działania klubowe, aby osiągnąć sukces z łatwością.`,
     urlIdentifier: 'zarzadzaj-klubem',
     icon: <AssessmentRoundedIcon />,
     link: '/panel/zarzadzaj-klubem',
@@ -60,17 +67,18 @@ const administrationPanelNavigationItem = (): Omit<
   },
 
   {
-    name: 'Skonfiguruj pŁatności',
-    urlIdentifier: 'skonfiguruj-platnosci',
+    name: 'Zapłać',
+    contentText: `Szybka i bezpieczna płatność! Wygodna opcja opłat online umożliwiająca płynne rozliczenia i transakcje bez zbędnych komplikacji.`,
+    urlIdentifier: 'zaplac',
     icon: <LocalAtmRoundedIcon />,
-    link: '/panel/skonfiguruj-platnosci',
+    link: '/panel/zaplac',
     access: 'competitor',
   },
 ];
 
 const administrationPanelAccountItems = (): Omit<
   NavigationPanelItemType,
-  'access' | 'urlIdentifier'
+  'access' | 'urlIdentifier' | 'contentText'
 >[] => [
   {
     name: 'Twoje konto',
