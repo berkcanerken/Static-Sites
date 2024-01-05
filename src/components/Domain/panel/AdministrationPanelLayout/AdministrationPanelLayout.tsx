@@ -10,6 +10,7 @@ import {
   AdministrationPanelNavigationWrapperStyled,
   AdministrationPanelAccountButtonsWrapperStyled,
   AdministrationPanelAccountButtonStyled,
+  PanelFullScreenWidthWrapperStyled,
 } from './AdministrationPanelLayout.styled';
 import Image from 'next/image';
 import { InsideLink } from '@/components/InsideLink';
@@ -27,6 +28,11 @@ import { Divider } from '@/components/Divider';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { getValueFromPath } from './AdministrationPanelLayout.handlers';
 import Link from 'next/link';
+import { PanelSection } from '../PanelSection';
+import {
+  PANEL_SECTION_COMPONENT,
+  PANEL_SECTION_HEADER,
+} from '../PanelSection/PanelSection.data';
 
 type AdministrationPanelLayoutProps = React.PropsWithChildren;
 
@@ -35,15 +41,38 @@ export type TabsStatesType = {
   current: number;
 };
 
+type HeroContentType = {
+  heading: string;
+  text: string;
+  icon: React.ReactNode;
+};
+
+const defaultHeroContent = {
+  heading: '',
+  icon: null,
+  text: '',
+} as HeroContentType;
+
 const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
   children,
 }) => {
   const [value, setValue] = React.useState<number>(0);
+  const [heroContent, setHeroContent] =
+    React.useState<HeroContentType>(defaultHeroContent);
 
   React.useEffect(() => {
     const path = window.location.pathname;
     const lastChunkOfPath = path.split('/').reverse()[0];
 
+    const currentObjectFormPath = administrationPanelNavigationItem().find(
+      (current) => current.urlIdentifier === lastChunkOfPath
+    );
+
+    setHeroContent({
+      heading: currentObjectFormPath?.name ?? '',
+      text: currentObjectFormPath?.contentText ?? '',
+      icon: currentObjectFormPath?.icon,
+    });
     setValue(getValueFromPath(lastChunkOfPath));
   }, []);
 
@@ -153,9 +182,20 @@ const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
         </AdministrationPanelNavigationWrapperStyled>
 
         <ContentStyled>
-          <Breadcrumbs />
+          <PanelFullScreenWidthWrapperStyled>
+            <Breadcrumbs />
 
-          <Divider />
+            <Divider />
+          </PanelFullScreenWidthWrapperStyled>
+
+          <PanelSection
+            component={PANEL_SECTION_COMPONENT.HEADER}
+            headerComponent={PANEL_SECTION_HEADER.H1}
+            header={heroContent.heading}
+            icon={heroContent.icon}
+          >
+            <p>{heroContent.text}</p>
+          </PanelSection>
 
           {children}
         </ContentStyled>

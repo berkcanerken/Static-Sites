@@ -27,6 +27,7 @@ const AdministrationPanelHeaderStyled = styled.header`
   gap: ${pxToRem(10)};
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   width: 100%;
+  max-width: ${pxToRem(1500)};
   min-height: ${pxToRem(48)};
   margin: ${pxToRem('0 10')};
   border-radius: ${pxToRem('0 0 12 12')};
@@ -43,6 +44,7 @@ const ContentWrapperStyled = styled.div`
   align-items: start;
   gap: ${pxToRem(10)};
   width: 100%;
+  max-width: ${pxToRem(1500)};
   min-height: calc(100dvh - ${pxToRem(86)});
   margin: ${pxToRem('auto auto 10')};
   background: transparent;
@@ -78,12 +80,18 @@ const ContentStyled = styled.article`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: ${pxToRem(10)};
+  gap: ${pxToRem(15)};
   width: 100%;
   min-height: calc(100dvh - ${pxToRem(86)});
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   border-radius: ${pxToRem(12)};
-  padding: ${pxToRem('10 0')};
+  padding: ${pxToRem('10 15')};
+  overflow-x: hidden;
+
+  @media screen and (min-width: 1024px) {
+    padding: ${pxToRem('10 30')};
+    gap: ${pxToRem(30)};
+  }
 `;
 
 const AdministrationPanelNavigationButtonsWrapper = styled.div`
@@ -135,6 +143,12 @@ const AdministrationPanelAccountButtonStyled = styled(Button)`
   min-height: ${pxToRem(72)};
 `;
 
+const PanelFullScreenWidthWrapperStyled = styled.div`
+  align-self: center;
+  width: 100vw;
+  height: fit-content;
+`;
+
 export {
   ArticleStyled,
   ContentWrapperStyled,
@@ -146,4 +160,5 @@ export {
   AdministrationPanelNavigationWrapperStyled,
   AdministrationPanelAccountButtonsWrapperStyled,
   AdministrationPanelAccountButtonStyled,
+  PanelFullScreenWidthWrapperStyled,
 };

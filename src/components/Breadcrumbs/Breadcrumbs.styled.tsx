@@ -3,6 +3,8 @@ import { Breadcrumbs } from '@mui/material';
 import styled from 'styled-components';
 
 const BreadcrumbsStyled = styled(Breadcrumbs)`
+  padding-bottom: ${pxToRem(10)};
+
   ol {
     justify-content: center;
   }
