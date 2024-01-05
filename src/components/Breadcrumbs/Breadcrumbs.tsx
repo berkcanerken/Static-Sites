@@ -32,6 +32,7 @@ const Breadcrumbs: React.FC = () => {
 
         return (
           <InsideLink
+            key={url}
             borderRadius="6"
             padding="0 10"
             hyperLink={currentUrl}

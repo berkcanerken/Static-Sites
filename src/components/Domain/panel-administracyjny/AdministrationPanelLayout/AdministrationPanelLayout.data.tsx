@@ -11,10 +11,16 @@ type AccessType = 'trainer' | 'competitor' | 'full';
 
 type NavigationPanelItemType = {
   name: string;
+  urlIdentifier: string;
   icon: React.ReactElement;
   typeOfItem: 'link' | 'button';
   link?: string;
   access?: AccessType;
+};
+
+export type TabsObjectStateType = {
+  previous: number;
+  current: number;
 };
 
 const administrationPanelNavigationItem = (): Omit<
@@ -23,43 +29,48 @@ const administrationPanelNavigationItem = (): Omit<
 >[] => [
   {
     name: 'Panel',
+    urlIdentifier: 'panel',
     icon: <AccountTreeRoundedIcon />,
-    link: '/',
+    link: '/panel',
     access: 'full',
   },
 
   {
     name: 'Ustawienia',
+    urlIdentifier: 'ustawienia',
     icon: <SettingsIcon />,
-    link: '/',
+    link: '/panel/ustawienia',
     access: 'full',
   },
 
   {
     name: 'Zarządzaj zawodnikami',
+    urlIdentifier: 'zarzadzaj-zawodnikami',
     icon: <Diversity3RoundedIcon />,
-    link: '/',
+    link: '/panel/zarzadzaj-zawodnikami',
     access: 'trainer',
   },
 
   {
     name: 'Zarządaj klubem',
+    urlIdentifier: 'zarzadzaj-klubem',
     icon: <AssessmentRoundedIcon />,
-    link: '/',
+    link: '/panel/zarzadzaj-klubem',
     access: 'trainer',
   },
 
   {
     name: 'Skonfiguruj pŁatności',
+    urlIdentifier: 'skonfiguruj-platnosci',
     icon: <LocalAtmRoundedIcon />,
-    link: '/',
+    link: '/panel/skonfiguruj-platnosci',
     access: 'competitor',
   },
 ];
 
 const administrationPanelAccountItems = (): Omit<
   NavigationPanelItemType,
-  'access'
+  'access' | 'urlIdentifier'
 >[] => [
   {
     name: 'Twoje konto',
@@ -75,4 +86,12 @@ const administrationPanelAccountItems = (): Omit<
   },
 ];
 
-export { administrationPanelNavigationItem, administrationPanelAccountItems };
+const flattedArrayOfUrl = administrationPanelNavigationItem().map(
+  (current) => current.urlIdentifier
+);
+
+export {
+  administrationPanelNavigationItem,
+  administrationPanelAccountItems,
+  flattedArrayOfUrl,
+};
