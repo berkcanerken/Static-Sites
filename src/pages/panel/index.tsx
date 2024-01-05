@@ -1,4 +1,4 @@
-import { AdminstrationPanelLayout } from '@/components/Domain/panel-administracyjny/AdministrationPanelLayout';
+import { AdminstrationPanelLayout } from '@/components/Domain/panel/AdministrationPanelLayout';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
