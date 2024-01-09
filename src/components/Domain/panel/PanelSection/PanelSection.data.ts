@@ -10,4 +10,9 @@ const PANEL_SECTION_HEADER = {
     H3: 'h3',
 } as const;
 
-export { PANEL_SECTION_COMPONENT, PANEL_SECTION_HEADER, };
+const PANEL_SECTION_VARIANT = {
+    DEFAULT: 'default',
+    WITHOUT_IMG: 'without-img',
+} as const;
+
+export { PANEL_SECTION_COMPONENT, PANEL_SECTION_HEADER, PANEL_SECTION_VARIANT };

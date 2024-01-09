@@ -11,7 +11,7 @@ const ArticleStyled = styled.article`
   align-items: center;
   gap: ${pxToRem(10)};
   width: 100vw;
-  height: 100dvh;
+  min-height: 100dvh;
   padding: ${pxToRem('0 10')};
   background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
 
@@ -27,13 +27,14 @@ const AdministrationPanelHeaderStyled = styled.header`
   gap: ${pxToRem(10)};
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   width: 100%;
-  max-width: ${pxToRem(1500)};
-  min-height: ${pxToRem(48)};
+  max-width: ${pxToRem(1400)};
+  height: ${pxToRem(58)};
   margin: ${pxToRem('0 10')};
   border-radius: ${pxToRem('0 0 12 12')};
   overflow: hidden;
 
   @media screen and (min-width: 1024px) {
+    height: ${pxToRem(65)};
     padding: ${pxToRem('4 20')};
   }
 `;
@@ -44,10 +45,11 @@ const ContentWrapperStyled = styled.div`
   align-items: start;
   gap: ${pxToRem(10)};
   width: 100%;
-  max-width: ${pxToRem(1500)};
+  max-width: ${pxToRem(1400)};
   min-height: calc(100dvh - ${pxToRem(86)});
   margin: ${pxToRem('auto auto 10')};
   background: transparent;
+  overflow-y: auto;
 `;
 
 const TabsStyled = styled(Tabs)`
@@ -85,7 +87,7 @@ const ContentStyled = styled.article`
   min-height: calc(100dvh - ${pxToRem(86)});
   background: ${({ theme }) => (theme as typeof defaultTheme).background};
   border-radius: ${pxToRem(12)};
-  padding: ${pxToRem('10 15')};
+  padding: ${pxToRem(15)};
   overflow-x: hidden;
 
   @media screen and (min-width: 1024px) {
