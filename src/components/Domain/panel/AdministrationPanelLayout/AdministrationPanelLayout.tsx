@@ -32,6 +32,7 @@ import { PanelSection } from '../PanelSection';
 import {
   PANEL_SECTION_COMPONENT,
   PANEL_SECTION_HEADER,
+  PANEL_SECTION_VARIANT,
 } from '../PanelSection/PanelSection.data';
 
 type AdministrationPanelLayoutProps = React.PropsWithChildren;
@@ -193,6 +194,7 @@ const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
             headerComponent={PANEL_SECTION_HEADER.H1}
             header={heroContent.heading}
             icon={heroContent.icon}
+            variant={PANEL_SECTION_VARIANT.DEFAULT}
           >
             <p>{heroContent.text}</p>
           </PanelSection>

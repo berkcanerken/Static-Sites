@@ -1,4 +1,12 @@
+import { Accordion } from '@/components/Accordion/Accordion';
 import { AdminstrationPanelLayout } from '@/components/Domain/panel/AdministrationPanelLayout';
+import { PanelSection } from '@/components/Domain/panel/PanelSection';
+import {
+  PANEL_SECTION_COMPONENT,
+  PANEL_SECTION_HEADER,
+  PANEL_SECTION_VARIANT,
+} from '@/components/Domain/panel/PanelSection/PanelSection.data';
+import { panelAccordionContent } from '@/data/panel.data';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -12,7 +20,16 @@ const AdministrationPanelPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <AdminstrationPanelLayout></AdminstrationPanelLayout>
+        <AdminstrationPanelLayout>
+          <PanelSection
+            headerComponent={PANEL_SECTION_HEADER.H2}
+            component={PANEL_SECTION_COMPONENT.SECTION}
+            header="FAQ"
+            variant={PANEL_SECTION_VARIANT.WITHOUT_IMG}
+          >
+            <Accordion content={panelAccordionContent} />
+          </PanelSection>
+        </AdminstrationPanelLayout>
       </main>
     </>
   );

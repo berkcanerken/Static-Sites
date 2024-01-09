@@ -1,32 +1,8 @@
 import { pxToRem } from '@/handlers/pxToRem';
 import { defaultTheme } from '@/providers/ThemeProvider';
 import { ValueOf } from '@/types/server';
-import styled from 'styled-components';
-
-const PanelSectionStyled = styled.div`
-  position: relative;
-  flex-direction: column;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  min-height: ${pxToRem(200)};
-  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
-  overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    align-self: center;
-    align-items: flex-start;
-    width: calc(100% + ${pxToRem(30)});
-    padding: ${pxToRem('0 15')};
-    background: transparent;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: calc(100% + ${pxToRem(60)});
-    padding: ${pxToRem('0 30')};
-  }
-`;
+import styled, { css } from 'styled-components';
+import { PANEL_SECTION_VARIANT } from './PanelSection.data';
 
 const PanelSectionHeaderStyled = styled.h2`
   font-size: ${pxToRem(28)};
@@ -85,6 +61,63 @@ const PanelSectionContentWrapperStyled = styled.div`
     min-height: ${pxToRem(200)};
     color: ${({ theme }) => (theme as typeof defaultTheme).text};
   }
+`;
+
+const PanelSectionStyled = styled.div.withConfig({
+  shouldForwardProp: (props) => !['variant'].includes(props),
+})<{ variant: ValueOf<typeof PANEL_SECTION_VARIANT> }>`
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  min-height: ${pxToRem(200)};
+  background: ${({ theme, variant }) =>
+    variant === PANEL_SECTION_VARIANT.DEFAULT
+      ? (theme as typeof defaultTheme).PanelBackground
+      : (theme as typeof defaultTheme).background};
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    align-self: center;
+    align-items: flex-start;
+    width: calc(100% + ${pxToRem(30)});
+    padding: ${pxToRem('0 15')};
+    background: transparent;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: calc(100% + ${pxToRem(60)});
+    padding: ${pxToRem('0 30')};
+  }
+
+  ${({ variant }) =>
+    variant === PANEL_SECTION_VARIANT.WITHOUT_IMG &&
+    css`
+      overflow: visible;
+
+      & ${PanelSectionIconWrapperStyled} {
+        display: none;
+      }
+
+      & ${PanelSectionHeaderStyled} {
+        color: ${({ theme }) => (theme as typeof defaultTheme).text};
+      }
+
+      & ${PanelSectionContentWrapperStyled} {
+        align-items: center;
+        max-width: 100%;
+      }
+
+      & ${PanelSectionContentWrapperStyled} {
+        padding: 0;
+
+        @media screen and (min-width: 768px) {
+          padding: ${pxToRem('10 20')};
+        }
+      }
+    `}
 `;
 
 export {
