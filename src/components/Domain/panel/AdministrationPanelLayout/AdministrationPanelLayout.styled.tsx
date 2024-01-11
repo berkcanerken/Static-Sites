@@ -49,7 +49,6 @@ const ContentWrapperStyled = styled.div`
   min-height: calc(100dvh - ${pxToRem(86)});
   margin: ${pxToRem('auto auto 10')};
   background: transparent;
-  overflow-y: auto;
 `;
 
 const TabsStyled = styled(Tabs)`
@@ -93,6 +92,22 @@ const ContentStyled = styled.article`
   @media screen and (min-width: 1024px) {
     padding: ${pxToRem('10 30')};
     gap: ${pxToRem(30)};
+
+    overflow-y: scroll;
+    height: calc(100dvh - ${pxToRem(86)});
+
+    scrollbar-width: 0;
+    scrollbar-color: transparent;
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
   }
 `;
 

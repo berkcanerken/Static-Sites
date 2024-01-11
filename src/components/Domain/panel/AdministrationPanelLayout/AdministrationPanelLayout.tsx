@@ -31,7 +31,7 @@ import Link from 'next/link';
 import { PanelSection } from '../PanelSection';
 import {
   PANEL_SECTION_COMPONENT,
-  PANEL_SECTION_HEADER,
+  PANEL_SECTION_HEADING,
   PANEL_SECTION_VARIANT,
 } from '../PanelSection/PanelSection.data';
 
@@ -191,8 +191,8 @@ const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
 
           <PanelSection
             component={PANEL_SECTION_COMPONENT.HEADER}
-            headerComponent={PANEL_SECTION_HEADER.H1}
-            header={heroContent.heading}
+            headingComponent={PANEL_SECTION_HEADING.H1}
+            heading={heroContent.heading}
             icon={heroContent.icon}
             variant={PANEL_SECTION_VARIANT.DEFAULT}
           >

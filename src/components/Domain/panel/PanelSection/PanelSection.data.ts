@@ -4,7 +4,7 @@ const PANEL_SECTION_COMPONENT = {
     DIV: 'div',
 } as const;
 
-const PANEL_SECTION_HEADER = {
+const PANEL_SECTION_HEADING = {
     H1: 'h1',
     H2: 'h2',
     H3: 'h3',
@@ -15,4 +15,4 @@ const PANEL_SECTION_VARIANT = {
     WITHOUT_IMG: 'without-img',
 } as const;
 
-export { PANEL_SECTION_COMPONENT, PANEL_SECTION_HEADER, PANEL_SECTION_VARIANT };
+export { PANEL_SECTION_COMPONENT, PANEL_SECTION_HEADING, PANEL_SECTION_VARIANT };

@@ -22,4 +22,7 @@ const panelAccordionContent = [
     },
 ] as AccordionItemType[];
 
-export { panelAccordionContent }
+const panelContactSectionMessage = `Jeśli potrzebujesz więcej informacji lub pomocy możesz
+do nas napisać. Spróbujemy odpowiedzieć jak najszybciej.`
+
+export { panelAccordionContent, panelContactSectionMessage }
