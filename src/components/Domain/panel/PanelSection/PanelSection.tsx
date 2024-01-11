@@ -1,7 +1,7 @@
 import { ValueOf } from '@/types/server';
 import {
   PANEL_SECTION_COMPONENT,
-  PANEL_SECTION_HEADER,
+  PANEL_SECTION_HEADING,
   PANEL_SECTION_VARIANT,
 } from './PanelSection.data';
 import React from 'react';
@@ -15,8 +15,8 @@ import {
 
 type PanelSectionProps = React.PropsWithChildren<{
   component: ValueOf<typeof PANEL_SECTION_COMPONENT>;
-  headerComponent: ValueOf<typeof PANEL_SECTION_HEADER>;
-  header: string;
+  headingComponent: ValueOf<typeof PANEL_SECTION_HEADING>;
+  heading: string;
   icon?: React.ReactNode;
   variant: ValueOf<typeof PANEL_SECTION_VARIANT>;
 }>;
@@ -24,13 +24,17 @@ type PanelSectionProps = React.PropsWithChildren<{
 const PanelSection: React.FC<PanelSectionProps> = ({
   children,
   component,
-  headerComponent,
-  header,
+  headingComponent,
+  heading,
   icon = null,
   variant,
 }) => {
   return (
-    <PanelSectionStyled as={component} variant={variant}>
+    <PanelSectionStyled
+      as={component}
+      variant={variant}
+      isHeroComponent={component === PANEL_SECTION_COMPONENT.HEADER}
+    >
       <PanelSectionIconWrapperStyled>
         <PanelSectionBackgroudElement />
 
@@ -38,8 +42,8 @@ const PanelSection: React.FC<PanelSectionProps> = ({
       </PanelSectionIconWrapperStyled>
 
       <PanelSectionContentWrapperStyled>
-        <PanelSectionHeaderStyled as={headerComponent}>
-          {header}
+        <PanelSectionHeaderStyled as={headingComponent}>
+          {heading}
         </PanelSectionHeaderStyled>
 
         {children}

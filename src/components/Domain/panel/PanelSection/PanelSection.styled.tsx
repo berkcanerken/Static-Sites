@@ -50,7 +50,7 @@ const PanelSectionContentWrapperStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: ${pxToRem(10)};
+  gap: ${pxToRem(15)};
   width: fit-content;
   padding: ${pxToRem('10 20')};
   color: ${({ theme }) => (theme as typeof defaultTheme).background};
@@ -58,21 +58,23 @@ const PanelSectionContentWrapperStyled = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 50%;
-    min-height: ${pxToRem(200)};
     color: ${({ theme }) => (theme as typeof defaultTheme).text};
   }
 `;
 
 const PanelSectionStyled = styled.div.withConfig({
-  shouldForwardProp: (props) => !['variant'].includes(props),
-})<{ variant: ValueOf<typeof PANEL_SECTION_VARIANT> }>`
+  shouldForwardProp: (props) => !['variant', 'isHeroComponent'].includes(props),
+})<{
+  variant: ValueOf<typeof PANEL_SECTION_VARIANT>;
+  isHeroComponent: boolean;
+}>`
   position: relative;
   flex-direction: column;
   display: flex;
   justify-content: start;
   align-items: center;
   width: 100%;
-  min-height: ${pxToRem(200)};
+  margin-top: ${({ isHeroComponent }) => (isHeroComponent ? '0' : pxToRem(30))};
   background: ${({ theme, variant }) =>
     variant === PANEL_SECTION_VARIANT.DEFAULT
       ? (theme as typeof defaultTheme).PanelBackground
@@ -106,8 +108,11 @@ const PanelSectionStyled = styled.div.withConfig({
       }
 
       & ${PanelSectionContentWrapperStyled} {
+        justify-content: start;
         align-items: center;
+        width: 100%;
         max-width: 100%;
+        color: ${({ theme }) => (theme as typeof defaultTheme).text};
       }
 
       & ${PanelSectionContentWrapperStyled} {

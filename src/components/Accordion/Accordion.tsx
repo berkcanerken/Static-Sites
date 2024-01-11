@@ -22,7 +22,7 @@ const Accordion: React.FC<AccordionProps> = ({ content }) => {
 
   const handleChange =
     (panel: string) =>
-    (event: React.SyntheticEvent, isExpanded: boolean): void => {
+    (_: React.SyntheticEvent, isExpanded: boolean): void => {
       setExpanded(isExpanded ? panel : false);
     };
 
@@ -38,6 +38,7 @@ const Accordion: React.FC<AccordionProps> = ({ content }) => {
             key={question}
             expanded={expanded === `panel${index + 1}`}
             onChange={handleChange(`panel${index + 1}`)}
+            id={`accordion-panel-${index + 1}`}
           >
             <AccordionSummaryStyled expandIcon={<ExpandMore />}>
               {question}
