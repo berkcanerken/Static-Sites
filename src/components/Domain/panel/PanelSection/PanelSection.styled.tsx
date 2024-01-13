@@ -71,9 +71,10 @@ const PanelSectionStyled = styled.div.withConfig({
   position: relative;
   flex-direction: column;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: ${pxToRem(200)};
   margin-top: ${({ isHeroComponent }) => (isHeroComponent ? '0' : pxToRem(30))};
   background: ${({ theme, variant }) =>
     variant === PANEL_SECTION_VARIANT.DEFAULT
