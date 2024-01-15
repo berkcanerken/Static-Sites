@@ -70,6 +70,8 @@ const LoginForm: React.FC = () => {
           color: 'success',
           severity: 'success',
         });
+
+        // window.location.href = '/panel';
       }
     } catch (error) {
       console.error(error);

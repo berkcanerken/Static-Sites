@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
 import styled from 'styled-components';
 
-const CompetitorsButtonStyled = styled(Button)`
+const TableButtonStyled = styled(Button)`
   align-self: end;
 `;
 
-export { CompetitorsButtonStyled };
+export { TableButtonStyled };
