@@ -8,8 +8,7 @@ import {
   FooterCopyrightApiType,
   LogoApiType,
   MenuApiType,
-} from '../types/server';
-import { AccountDraver } from '../AccountDraver';
+} from '../../types/server';
 import { Alert } from '../Alert';
 import { AlertProvider } from '../Alert/Alert.context';
 
@@ -37,8 +36,6 @@ const Layout: React.FC<Props> = ({
     <LayoutStyled>
       <AlertProvider>
         <MainNavigationMenu data={[mainMenuLogo, mainMenuContact, mainMenu]} />
-
-        <AccountDraver />
 
         <LayoutChildrenWrapper>{children}</LayoutChildrenWrapper>
 

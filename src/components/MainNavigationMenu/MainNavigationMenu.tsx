@@ -25,10 +25,11 @@ import {
   MainNavigationChipStyled,
   MainNavigationMenuListButtonStyled,
 } from './MainNavigationMenu.styled';
-import { LogoApiType, MenuApiType } from '../types/server';
+import { LogoApiType, MenuApiType } from '../../types/server';
 import { ButtonActionWrapper } from '../ButtonActionWrapper';
 import { CopyContentButton } from '../CopyContentButton';
-import { AccountDraverContext, BooleanObject } from '../AccountDraver';
+import { DraverContext, DirectionObject } from '../Draver';
+import { LoginForm } from '../LoginForm';
 
 type MainNavigationMenuProps = {
   data: [LogoApiType, MenuApiType, MenuApiType];
@@ -43,36 +44,7 @@ const getLinkWithoutBaseUrl = (link: string): string => {
 const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [indexOfCurrentLink, setIndexOfCurrentLink] = React.useState<number>(0);
-  const accountDraverContext = React.useContext(AccountDraverContext);
-
-  const setAccountDraverValue = (value: string): void => {
-    const object = accountDraverContext?.booleanObject;
-    const setObject = accountDraverContext?.setBooleanObject;
-
-    if (object && setObject) {
-      const valueFromObject = Object.entries(object).find(
-        (current) => current[0] === value
-      );
-
-      if (valueFromObject && valueFromObject[1] === true) {
-        const result = { top: false, right: false, bottom: false, left: false };
-
-        setObject(result);
-      }
-
-      if (valueFromObject && valueFromObject[1] === false) {
-        const result = Object.entries(object).reduce((accumulator, current) => {
-          if (current[0] === valueFromObject[0]) {
-            return { ...accumulator, [current[0]]: true };
-          } else {
-            return { ...accumulator, [current[0]]: false };
-          }
-        }, {} as BooleanObject);
-
-        setObject(result);
-      }
-    }
-  };
+  const draverContext = React.useContext(DraverContext);
 
   React.useEffect(() => {
     const currentUrl = window.location.href;
@@ -84,22 +56,19 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
     setIndexOfCurrentLink(indexOfCurrentLink);
   }, [indexOfCurrentLink]);
 
-  const handleClickAway = () => {
-    setIsOpen(false);
+  const handleClickAway = () => {};
+
+  const toggleDrawer = (): void => {
+    const directionObject = {
+      ...draverContext?.draverObject.directionObject,
+    } as DirectionObject;
+    directionObject.right = true;
+
+    draverContext?.setDraverObject({
+      directionObject: directionObject,
+      children: <LoginForm />,
+    });
   };
-
-  const toggleDrawer =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-
-      setIsOpen(open);
-    };
 
   return (
     <ClickAwayListener
@@ -129,7 +98,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
             </MainNavigationLogoWrapper>
           </MainNavigationLinkStyled>
 
-          <MainNavigationMenuButtonStyled onClick={toggleDrawer(!isOpen)}>
+          <MainNavigationMenuButtonStyled onClick={(): void => toggleDrawer()}>
             {isOpen ? (
               <MainNavigationCloseMenuIcon />
             ) : (
@@ -138,12 +107,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
           </MainNavigationMenuButtonStyled>
         </MainNavigationMenuBoxStyled>
 
-        <MainNavigationContentWrapper
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-          isVisible={isOpen}
-        >
+        <MainNavigationContentWrapper role="presentation" isVisible={isOpen}>
           <MainNavigationContactListStyled>
             {MainNavigationContactData.map(({ name, icon, alt }) => {
               const href = checkTheContactMethod(name);
@@ -184,7 +148,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
                   {current.label === 'Logowanie' ? (
                     <MainNavigationMenuListButtonStyled
                       onClick={(): void => {
-                        setAccountDraverValue('right');
+                        toggleDrawer();
                       }}
                     >
                       {current.label}

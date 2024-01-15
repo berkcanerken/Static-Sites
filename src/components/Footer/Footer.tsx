@@ -7,7 +7,7 @@ import {
   FootersContentWrapperStyled,
 } from './Footer.styled';
 import { getFooterContactData, getPolicyData } from './Footer.data';
-import { FooterCopyrightApiType, MenuApiType } from '../types/server';
+import { FooterCopyrightApiType, MenuApiType } from '../../types/server';
 import { v4 as uuid } from 'uuid';
 
 type FooterProps = {

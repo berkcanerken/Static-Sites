@@ -11,6 +11,17 @@ declare module '@mui/material/Button' {
 
 const defaultTheme = createTheme({
   components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.pink[300],
+          '&:hover': {
+            backgroundColor: colors.pink[400], 
+          },
+        },
+      },
+    },
+
     MuiTypography: {
       defaultProps: {
         variantMapping: {

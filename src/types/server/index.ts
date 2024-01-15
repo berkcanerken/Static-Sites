@@ -55,3 +55,5 @@ export type LogoResponseType = PlugApiType<{
     }>
 }>
 
+export type ValueOf<T> = T[keyof T];
+
