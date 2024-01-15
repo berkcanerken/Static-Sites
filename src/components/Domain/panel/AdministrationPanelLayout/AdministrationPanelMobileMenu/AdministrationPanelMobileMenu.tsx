@@ -17,8 +17,6 @@ const AdministrationPanelMobileMenu: React.FC = () => {
   const [value, setValue] = React.useState(0);
   const draverContext = React.useContext(DraverContext);
 
-  const userAccess = 'trainer';
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

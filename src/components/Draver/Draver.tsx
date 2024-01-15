@@ -2,22 +2,11 @@ import React from 'react';
 import {
   DividerStyled,
   DraverStyled,
-  // DraverTabListStyled,
-  // DraverTabStyled,
   DraverWrapperStyled,
   ExitButton,
   ExitIcon,
 } from './Draver.styled';
-import {
-  DraverContext,
-  DirectionObject,
-  DraverObjectType,
-} from './Draver.context';
-import { Divider } from '@mui/material';
-// import TabContext from '@mui/lab/TabContext';
-// import TabPanel from '@mui/lab/TabPanel';
-// import { RegistrationForm } from '../RegistrationForm';
-// import { LoginForm } from '../LoginForm';
+import { DraverContext, DirectionObject } from './Draver.context';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -82,26 +71,3 @@ const Draver: React.FC = () => {
 export { Draver };
 
 // z jakiegośpowodu activedElemet 'zawsze jest drugą wartością anchor={activedElement?.[0] ?? 'bottom'}'
-
-{
-  /* <TabContext value={value}>
-<AccountDraverTabListStyled
-  onChange={handleChange}
-  aria-label="Tabki"
->
-  <AccountDraverTabStyled label="Rejestracja" value="1" />
-
-  <AccountDraverTabStyled label="Logowanie" value="2" />
-</AccountDraverTabListStyled>
-
-<AccountDraverWrapperStyled>
-  <TabPanel value="1">
-    <RegistrationForm />
-  </TabPanel>
-
-  <TabPanel value="2">
-    <LoginForm />
-  </TabPanel>
-</AccountDraverWrapperStyled>
-</TabContext> */
-}

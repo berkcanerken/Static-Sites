@@ -8,7 +8,7 @@ import {
   FooterCopyrightApiType,
   LogoApiType,
   MenuApiType,
-} from '../types/server';
+} from '../../types/server';
 import { Draver } from '../Draver';
 import { Alert } from '../Alert';
 import { AlertProvider } from '../Alert/Alert.context';

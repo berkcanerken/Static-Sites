@@ -1,4 +1,4 @@
-import { ContactMenuApiResponseType, FooterCopyrightApiResponseType, LogoResponseType, MenuApiResponseType } from '@/components/types/server';
+import { ContactMenuApiResponseType, FooterCopyrightApiResponseType, LogoResponseType, MenuApiResponseType } from '../../types/server';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
 const strapiUrl = process.env.STRAPI_URL;

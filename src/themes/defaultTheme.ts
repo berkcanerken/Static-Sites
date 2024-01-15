@@ -14,7 +14,7 @@ const defaultTheme = createTheme({
     MuiFab: {
       styleOverrides: {
         root: {
-          backgroundColor: colors.pink[344],
+          backgroundColor: colors.pink[300],
           '&:hover': {
             backgroundColor: colors.pink[400], 
           },
