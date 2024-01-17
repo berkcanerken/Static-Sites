@@ -3,7 +3,7 @@ import {
   CompetitorsTableToolbarHeadingStyled,
   CompetitorsTableToolbarStyled,
 } from './CompetitorsTableToolbar.styled';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
@@ -22,9 +22,11 @@ const CompetitorsTableToolbar: React.FC<CompetitorsTableToolbarProps> = ({
             {`Wybrano ${selectedRows}`}
           </CompetitorsTableToolbarHeadingStyled>
 
-          <IconButton aria-label="Usuń">
-            <DeleteRoundedIcon />
-          </IconButton>
+          <Tooltip title="Usuń">
+            <IconButton aria-label="Usuń">
+              <DeleteRoundedIcon />
+            </IconButton>
+          </Tooltip>
         </>
       ) : (
         <>
@@ -32,9 +34,11 @@ const CompetitorsTableToolbar: React.FC<CompetitorsTableToolbarProps> = ({
             Zawodnicy
           </CompetitorsTableToolbarHeadingStyled>
 
-          <IconButton aria-label="Filtry">
-            <FilterListRoundedIcon />
-          </IconButton>
+          <Tooltip title="Filtry">
+            <IconButton aria-label="Filtry">
+              <FilterListRoundedIcon />
+            </IconButton>
+          </Tooltip>
         </>
       )}
     </CompetitorsTableToolbarStyled>
