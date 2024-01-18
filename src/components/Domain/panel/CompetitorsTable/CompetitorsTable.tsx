@@ -17,21 +17,22 @@ import {
 } from '@mui/material';
 import { CompetitorsTableToolbar } from './CompetitorsTableToolbar';
 import { CompetitorsTableHead } from './CompetitorsTableHead';
-import { competitorsTableHeadCells } from './CompetitorsTable.data';
+import {
+  CompetitorsDataRows,
+  competitorsTableHeadCells,
+} from './CompetitorsTable.data';
 import { CompetitorsDataType, Order } from './CompetitorsTable.types';
 import { getComparator, stableSort } from './CompetitorsTableHead.handlers';
 import EditIcon from '@mui/icons-material/Edit';
 
-type CompetitorsTableProps = {
-  rows: CompetitorsDataType[];
-};
-
-const CompetitorsTable: React.FC<CompetitorsTableProps> = ({ rows }) => {
+const CompetitorsTable: React.FC = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof CompetitorsDataType>('id');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const rows = [...CompetitorsDataRows];
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,

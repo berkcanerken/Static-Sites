@@ -15,7 +15,7 @@ const AdministrationPanelPage: NextPage = () => {
       </Head>
       <main>
         <AdminstrationPanelLayout>
-          <CompetitorsTable rows={CompetitorsDataRows} />
+          <CompetitorsTable />
         </AdminstrationPanelLayout>
       </main>
     </>

@@ -34,6 +34,7 @@ import {
   PANEL_SECTION_HEADING,
   PANEL_SECTION_VARIANT,
 } from '../PanelSection/PanelSection.data';
+import { CompetitorsTableDataProvider } from '../CompetitorsTable/CompetitorsTable.context';
 
 type AdministrationPanelLayoutProps = React.PropsWithChildren;
 
@@ -116,93 +117,97 @@ const AdminstrationPanelLayout: React.FC<AdministrationPanelLayoutProps> = ({
   };
 
   return (
-    <ArticleStyled>
-      <AdministrationPanelHeaderStyled>
-        <InsideLink padding="6 10">
-          <Image
-            src="/icons/mztsLogoWithoutText.svg"
-            alt="logo MZTS"
-            width="48"
-            height="48"
-          />
-        </InsideLink>
+    <CompetitorsTableDataProvider>
+      <ArticleStyled>
+        <AdministrationPanelHeaderStyled>
+          <InsideLink padding="6 10">
+            <Image
+              src="/icons/mztsLogoWithoutText.svg"
+              alt="logo MZTS"
+              width="48"
+              height="48"
+            />
+          </InsideLink>
 
-        <AdministrationPanelNavigationButtonsWrapper>
-          <AdministrationPanelIconButtonStyled
-            displayNoneOnDesktop={false}
-            onClick={handleAccountButton}
-          >
-            <AccountCircleRoundedIcon fontSize="large" />
-          </AdministrationPanelIconButtonStyled>
+          <AdministrationPanelNavigationButtonsWrapper>
+            <AdministrationPanelIconButtonStyled
+              displayNoneOnDesktop={false}
+              onClick={handleAccountButton}
+            >
+              <AccountCircleRoundedIcon fontSize="large" />
+            </AdministrationPanelIconButtonStyled>
 
-          <AdministrationPanelIconButtonStyled
-            displayNoneOnDesktop
-            onClick={handleMenuButton}
-          >
-            <DragHandleRoundedIcon fontSize="large" />
-          </AdministrationPanelIconButtonStyled>
-        </AdministrationPanelNavigationButtonsWrapper>
-      </AdministrationPanelHeaderStyled>
+            <AdministrationPanelIconButtonStyled
+              displayNoneOnDesktop
+              onClick={handleMenuButton}
+            >
+              <DragHandleRoundedIcon fontSize="large" />
+            </AdministrationPanelIconButtonStyled>
+          </AdministrationPanelNavigationButtonsWrapper>
+        </AdministrationPanelHeaderStyled>
 
-      <ContentWrapperStyled>
-        <AdministrationPanelNavigationWrapperStyled>
-          <TabsStyled
-            value={value}
-            variant="scrollable"
-            aria-label="visible arrows tabs example"
-            orientation="vertical"
-            role="navigation"
-            sx={{
-              [`& .${tabsClasses.scrollButtons}`]: {
-                '&.Mui-disabled': { opacity: 0.3 },
-              },
-            }}
-          >
-            {administrationPanelNavigationItem().map(({ name, icon, link }) => (
-              <Tab
-                key={name}
-                icon={icon}
-                label={name}
-                LinkComponent={Link}
-                href={link ? link : ''}
-              />
-            ))}
-          </TabsStyled>
+        <ContentWrapperStyled>
+          <AdministrationPanelNavigationWrapperStyled>
+            <TabsStyled
+              value={value}
+              variant="scrollable"
+              aria-label="visible arrows tabs example"
+              orientation="vertical"
+              role="navigation"
+              sx={{
+                [`& .${tabsClasses.scrollButtons}`]: {
+                  '&.Mui-disabled': { opacity: 0.3 },
+                },
+              }}
+            >
+              {administrationPanelNavigationItem().map(
+                ({ name, icon, link }) => (
+                  <Tab
+                    key={name}
+                    icon={icon}
+                    label={name}
+                    LinkComponent={Link}
+                    href={link ? link : ''}
+                  />
+                )
+              )}
+            </TabsStyled>
 
-          <AdministrationPanelAccountButtonsWrapperStyled>
-            {administrationPanelAccountItems().map(({ name, icon }) => (
-              <AdministrationPanelAccountButtonStyled
-                key={name}
-                startIcon={icon}
-                onClick={(): void => handleAccountButtonClick(name)}
-              >
-                {name}
-              </AdministrationPanelAccountButtonStyled>
-            ))}
-          </AdministrationPanelAccountButtonsWrapperStyled>
-        </AdministrationPanelNavigationWrapperStyled>
+            <AdministrationPanelAccountButtonsWrapperStyled>
+              {administrationPanelAccountItems().map(({ name, icon }) => (
+                <AdministrationPanelAccountButtonStyled
+                  key={name}
+                  startIcon={icon}
+                  onClick={(): void => handleAccountButtonClick(name)}
+                >
+                  {name}
+                </AdministrationPanelAccountButtonStyled>
+              ))}
+            </AdministrationPanelAccountButtonsWrapperStyled>
+          </AdministrationPanelNavigationWrapperStyled>
 
-        <ContentStyled>
-          <PanelFullScreenWidthWrapperStyled>
-            <Breadcrumbs />
+          <ContentStyled>
+            <PanelFullScreenWidthWrapperStyled>
+              <Breadcrumbs />
 
-            <Divider />
-          </PanelFullScreenWidthWrapperStyled>
+              <Divider />
+            </PanelFullScreenWidthWrapperStyled>
 
-          <PanelSection
-            component={PANEL_SECTION_COMPONENT.HEADER}
-            headingComponent={PANEL_SECTION_HEADING.H1}
-            heading={heroContent.heading}
-            icon={heroContent.icon}
-            variant={PANEL_SECTION_VARIANT.DEFAULT}
-          >
-            <p>{heroContent.text}</p>
-          </PanelSection>
+            <PanelSection
+              component={PANEL_SECTION_COMPONENT.HEADER}
+              headingComponent={PANEL_SECTION_HEADING.H1}
+              heading={heroContent.heading}
+              icon={heroContent.icon}
+              variant={PANEL_SECTION_VARIANT.DEFAULT}
+            >
+              <p>{heroContent.text}</p>
+            </PanelSection>
 
-          {children}
-        </ContentStyled>
-      </ContentWrapperStyled>
-    </ArticleStyled>
+            {children}
+          </ContentStyled>
+        </ContentWrapperStyled>
+      </ArticleStyled>
+    </CompetitorsTableDataProvider>
   );
 };
 
