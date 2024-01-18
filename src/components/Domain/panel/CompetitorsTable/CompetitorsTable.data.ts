@@ -1,4 +1,4 @@
-import { CompetitorsTableHeadCellsType } from "./CompetitorsTableHead";
+import { CompetitorsDataType, CompetitorsTableHeadCellsType } from "./CompetitorsTable.types";
 
 const competitorsTableHeadCells = [
     { id: 'id', label: 'Id', isNumeric: true },
@@ -13,4 +13,133 @@ const competitorsTableHeadCells = [
     },
   ] as CompetitorsTableHeadCellsType;
 
-  export { competitorsTableHeadCells }
+  const CompetitorsDataRows = [{
+    id: 1001,
+    name: 'John',
+    familyName: 'Doe',
+    class: 'H',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Niedotyczy',
+  },
+  {
+    id: 1002,
+    name: 'Jane',
+    familyName: 'Smith',
+    class: 'H',
+    license: 'Aktualna',
+    membershipFee: 'Niedotyczy',
+  },
+  {
+    id: 1003,
+    name: 'Michael',
+    familyName: 'Johnson',
+    class: 'F',
+    license: 'Aktualna',
+    membershipFee: 'Nieopłacono',
+  },
+  {
+    id: 1004,
+    name: 'Emma',
+    familyName: 'Brown',
+    class: 'G',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Niedotyczy',
+  },
+  {
+    id: 1005,
+    name: 'Daniel',
+    familyName: 'White',
+    class: 'H',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1006,
+    name: 'Olivia',
+    familyName: 'Martinez',
+    class: 'F',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Nieopłacono',
+  },
+  {
+    id: 1007,
+    name: 'William',
+    familyName: 'Johnson',
+    class: 'G',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1008,
+    name: 'Sophia',
+    familyName: 'Davis',
+    class: 'H',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1009,
+    name: 'Alexander',
+    familyName: 'Brown',
+    class: 'F',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Nieopłacono',
+  },
+  {
+    id: 1010,
+    name: 'Emily',
+    familyName: 'Anderson',
+    class: 'G',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1011,
+    name: 'James',
+    familyName: 'Thomas',
+    class: 'H',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Niedotyczy',
+  },
+  {
+    id: 1012,
+    name: 'Ava',
+    familyName: 'Wilson',
+    class: 'H',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1013,
+    name: 'Benjamin',
+    familyName: 'Moore',
+    class: 'F',
+    license: 'Brak aktualnej licencji',
+    membershipFee: 'Nieopłacono',
+  },
+  {
+    id: 1014,
+    name: 'Mia',
+    familyName: 'Johnson',
+    class: 'G',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1015,
+    name: 'Ethan',
+    familyName: 'Miller',
+    class: 'H',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },
+  {
+    id: 1016,
+    name: 'Abigail',
+    familyName: 'Clark',
+    class: 'F',
+    license: 'Aktualna',
+    membershipFee: 'Opłacono',
+  },] as CompetitorsDataType[]
+
+  export { competitorsTableHeadCells, CompetitorsDataRows }

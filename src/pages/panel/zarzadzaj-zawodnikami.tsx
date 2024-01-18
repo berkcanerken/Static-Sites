@@ -1,5 +1,6 @@
 import { AdminstrationPanelLayout } from '@/components/Domain/panel/AdministrationPanelLayout';
 import { CompetitorsTable } from '@/components/Domain/panel/CompetitorsTable';
+import { CompetitorsDataRows } from '@/components/Domain/panel/CompetitorsTable/CompetitorsTable.data';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -14,7 +15,7 @@ const AdministrationPanelPage: NextPage = () => {
       </Head>
       <main>
         <AdminstrationPanelLayout>
-          <CompetitorsTable />
+          <CompetitorsTable rows={CompetitorsDataRows} />
         </AdminstrationPanelLayout>
       </main>
     </>
