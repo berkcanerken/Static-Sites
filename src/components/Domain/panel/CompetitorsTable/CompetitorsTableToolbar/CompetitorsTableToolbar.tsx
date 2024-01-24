@@ -6,14 +6,29 @@ import {
 import { IconButton, Tooltip } from '@mui/material';
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { CompetitorsTableDataContext } from '../CompetitorsTable.context';
+import { CompetitorsDataType } from '../CompetitorsTable.types';
 
 type CompetitorsTableToolbarProps = {
   selectedRows?: number;
+  rowsToDelete: readonly string[];
 };
 
 const CompetitorsTableToolbar: React.FC<CompetitorsTableToolbarProps> = ({
   selectedRows = 0,
+  rowsToDelete,
 }) => {
+  const competitorsContext = React.useContext(CompetitorsTableDataContext);
+
+  const handleDeleteButton = (): void => {
+    const data = competitorsContext?.data;
+    const resolvedData = data?.filter(
+      ({ name }) => !rowsToDelete.includes(name)
+    );
+
+    competitorsContext?.setData(resolvedData as CompetitorsDataType[]);
+  };
+
   return (
     <CompetitorsTableToolbarStyled isSelected={selectedRows > 0}>
       {selectedRows > 0 ? (
@@ -23,7 +38,7 @@ const CompetitorsTableToolbar: React.FC<CompetitorsTableToolbarProps> = ({
           </CompetitorsTableToolbarHeadingStyled>
 
           <Tooltip title="Usuń">
-            <IconButton aria-label="Usuń">
+            <IconButton aria-label="Usuń" onClick={handleDeleteButton}>
               <DeleteRoundedIcon />
             </IconButton>
           </Tooltip>

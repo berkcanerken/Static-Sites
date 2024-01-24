@@ -13,7 +13,7 @@ const competitorsTableHeadCells = [
     },
   ] as CompetitorsTableHeadCellsType;
 
-  const CompetitorsDataRows = [{
+  const competitorsDataRows = [{
     id: 1001,
     name: 'John',
     familyName: 'Doe',
@@ -142,4 +142,4 @@ const competitorsTableHeadCells = [
     membershipFee: 'Opłacono',
   },] as CompetitorsDataType[]
 
-  export { competitorsTableHeadCells, CompetitorsDataRows }
+  export { competitorsTableHeadCells, competitorsDataRows }

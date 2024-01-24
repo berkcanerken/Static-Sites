@@ -7,6 +7,7 @@ const CompetitorsTableHeadStyled = styled(TableHead)``;
 const CompetitorsTableCellStyled = styled(TableCell)`
   height: ${pxToRem(64)};
   padding: ${pxToRem('0 16')};
+  text-transform: uppercase;
 
   @media screen and (min-width: 600px) {
     &:last-of-type {

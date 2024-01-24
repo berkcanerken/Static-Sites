@@ -18,12 +18,16 @@ import {
 import { CompetitorsTableToolbar } from './CompetitorsTableToolbar';
 import { CompetitorsTableHead } from './CompetitorsTableHead';
 import {
-  CompetitorsDataRows,
+  competitorsDataRows,
   competitorsTableHeadCells,
 } from './CompetitorsTable.data';
 import { CompetitorsDataType, Order } from './CompetitorsTable.types';
 import { getComparator, stableSort } from './CompetitorsTableHead.handlers';
 import EditIcon from '@mui/icons-material/Edit';
+import { CompetitorsTableDataContext } from './CompetitorsTable.context';
+import { PanelModal } from '../PanelModal';
+import { ValueOf } from '@/types/utils';
+import { DIALOG_VARIANT } from '../PanelModal/PanelModal.data';
 
 const CompetitorsTable: React.FC = () => {
   const [order, setOrder] = React.useState<Order>('asc');
@@ -31,8 +35,15 @@ const CompetitorsTable: React.FC = () => {
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [openDialog, setOpenDialog] = React.useState<boolean>(false);
+  const [dialogVariant, setDialogVariant] = React.useState<
+    ValueOf<typeof DIALOG_VARIANT>
+  >(DIALOG_VARIANT.DEFAULT);
 
-  const rows = [...CompetitorsDataRows];
+  const dataContext = React.useContext(CompetitorsTableDataContext);
+  const { data } = dataContext || {};
+
+  const rows = data || [];
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -90,12 +101,25 @@ const CompetitorsTable: React.FC = () => {
 
   return (
     <>
-      <TableButtonStyled variant="text" endIcon={<AddIcon />}>
+      <TableButtonStyled
+        variant="text"
+        endIcon={<AddIcon />}
+        onClick={(): void => setOpenDialog(true)}
+      >
         Dodaj zawodnika
       </TableButtonStyled>
 
+      <PanelModal
+        dialogVariant={dialogVariant}
+        open={openDialog}
+        onClose={(): void => setOpenDialog(false)}
+      />
+
       <Paper sx={{ width: '100%' }}>
-        <CompetitorsTableToolbar selectedRows={selected.length} />
+        <CompetitorsTableToolbar
+          selectedRows={selected.length}
+          rowsToDelete={selected}
+        />
 
         <TableContainer>
           <Table>

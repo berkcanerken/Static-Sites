@@ -1,9 +1,9 @@
 import React from 'react';
 import { CompetitorsDataType } from './CompetitorsTable.types';
-import { CompetitorsDataRows } from './CompetitorsTable.data';
+import { competitorsDataRows } from './CompetitorsTable.data';
 
 type CompetitorsTableContextType = {
-  data: CompetitorsDataType[];
+  data: CompetitorsDataType[] | undefined;
   setData: React.Dispatch<React.SetStateAction<CompetitorsDataType[]>>;
 };
 
@@ -15,7 +15,7 @@ const CompetitorsTableDataProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [data, setData] =
-    React.useState<CompetitorsDataType[]>(CompetitorsDataRows);
+    React.useState<CompetitorsDataType[]>(competitorsDataRows);
 
   return (
     <CompetitorsTableDataContext.Provider value={{ data, setData }}>

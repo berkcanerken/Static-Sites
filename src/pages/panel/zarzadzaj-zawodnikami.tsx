@@ -1,6 +1,5 @@
 import { AdminstrationPanelLayout } from '@/components/Domain/panel/AdministrationPanelLayout';
 import { CompetitorsTable } from '@/components/Domain/panel/CompetitorsTable';
-import { CompetitorsDataRows } from '@/components/Domain/panel/CompetitorsTable/CompetitorsTable.data';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
