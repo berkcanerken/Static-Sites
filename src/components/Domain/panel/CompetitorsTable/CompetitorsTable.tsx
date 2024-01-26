@@ -6,6 +6,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import {
   Checkbox,
+  DialogProps,
   IconButton,
   Paper,
   Table,
@@ -17,10 +18,7 @@ import {
 } from '@mui/material';
 import { CompetitorsTableToolbar } from './CompetitorsTableToolbar';
 import { CompetitorsTableHead } from './CompetitorsTableHead';
-import {
-  competitorsDataRows,
-  competitorsTableHeadCells,
-} from './CompetitorsTable.data';
+import { competitorsTableHeadCells } from './CompetitorsTable.data';
 import { CompetitorsDataType, Order } from './CompetitorsTable.types';
 import { getComparator, stableSort } from './CompetitorsTableHead.handlers';
 import EditIcon from '@mui/icons-material/Edit';
@@ -113,6 +111,7 @@ const CompetitorsTable: React.FC = () => {
         dialogVariant={dialogVariant}
         open={openDialog}
         onClose={(): void => setOpenDialog(false)}
+        handelExitButton={(): void => setOpenDialog(false)}
       />
 
       <Paper sx={{ width: '100%' }}>
