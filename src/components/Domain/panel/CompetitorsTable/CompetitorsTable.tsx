@@ -41,6 +41,16 @@ const CompetitorsTable: React.FC = () => {
   const dataContext = React.useContext(CompetitorsTableDataContext);
   const { data } = dataContext || {};
 
+  React.useEffect((): void => {
+    const html = document.querySelector('html');
+
+    if (html) {
+      openDialog
+        ? (html.style.overflowY = 'hidden')
+        : (html.style.overflowY = 'auto');
+    }
+  }, [openDialog]);
+
   const rows = data || [];
 
   const handleRequestSort = (

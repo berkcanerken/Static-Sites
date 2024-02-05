@@ -1,7 +1,9 @@
 type PanelModalFieldType = {
     label: string;
-    type: string;
+    type: "email" | "tel" | "date" | 'text';
+    autocomplete: string;
     required: boolean;
+    name: 'givenName' |'familyName' | 'careGiversName' | 'email' | 'selectGender' | 'selectClass' | 'date' | 'tel'
 }
 
 const DIALOG_VARIANT = {
@@ -19,27 +21,38 @@ const panelModalFields = [
     {
         label: 'Imię',
         type: 'text',
+        autocomplete: 'given-name',
         required: true,
+        name: 'givenName',
     },
     {
         label: 'Nazwisko',
         type: 'text',
+        autocomplete: 'family-name',
         required: true,
+        name: 'familyName',
+
     },
     {
         label: 'Email',
         type: 'email',
+        autocomplete: 'email',
         required: true,
+        name: 'email',
     },
     {
         label: 'Tel. Kontaktowy',
-        type: 'tel',
+        type: 'number',
+        autocomplete: 'tel',
         required: true,
+        name: 'tel',
     },
     {
-        label: 'Imię i nazwisko Opiekuna',
+        label: 'Imię i nazwisko opiekuna',
         type: 'text',
-        required: true,
+        autocomplete: 'name',
+        required: false,
+        name: 'careGiversName',
     },
 ] as PanelModalFieldType[];
 
