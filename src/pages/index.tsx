@@ -1,12 +1,6 @@
 import Head from 'next/head';
-import { Hero } from '@/components/Hero';
-import { AboutUsSection } from '@/components/AboutUsSection';
-import { Banner } from '@/components/Banner';
-import { SlideProps, Slideshow } from '@/components/Slideshow';
-import { Section } from '@/components/Section';
 import { GetStaticProps, NextPage } from 'next';
 // import { getLayoutProps } from '@/handlers/server';
-import { Layout } from '@/components/Layout';
 
 // export const getStaticProps: GetStaticProps = async (context) => {
 //   const result = await getLayoutProps(context);
@@ -27,18 +21,7 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Layout>
-          <Hero
-            image="/icons/homeHeroImg.png"
-            alt="zdjęcie z tańczącymi ludźmi"
-          ></Hero>
-
-          <AboutUsSection />
-
-          <Banner />
-        </Layout>
-      </main>
+      <main></main>
     </>
   );
 };
