@@ -7,14 +7,14 @@ import {
   FootersContentWrapperStyled,
 } from './Footer.styled';
 import { getFooterContactData, getPolicyData } from './Footer.data';
-import { FooterCopyrightApiType, MenuApiType } from '../../types/server';
+// import { FooterCopyrightApiType, MenuApiType } from '../../types/server';
 import { v4 as uuid } from 'uuid';
 
-type FooterProps = {
-  data: [MenuApiType, MenuApiType, FooterCopyrightApiType];
-};
+// type FooterProps = {
+//   data: [MenuApiType, MenuApiType, FooterCopyrightApiType];
+// };
 
-const Footer: React.FC<FooterProps> = ({ data }) => {
+const Footer: React.FC = () => {
   return (
     <FooterStyled id="main-footer">
       <FootersContentWrapperStyled>
@@ -41,7 +41,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
       </FootersContentWrapperStyled>
 
       <FootersContentWrapperStyled>
-        <FooterTextStyled opacity={60}>{data[2]}</FooterTextStyled>
+        <FooterTextStyled opacity={60}></FooterTextStyled>
       </FootersContentWrapperStyled>
     </FooterStyled>
   );

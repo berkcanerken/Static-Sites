@@ -1,21 +1,21 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { RegulationsSection } from '@/components/Domain/regultaions/RegulationsSection/RegulationsSection';
-import { Layout, LayoutProps } from '@/components/Layout';
+import { Layout } from '@/components/Layout';
 import { GetStaticProps, NextPage } from 'next';
-import { getLayoutProps } from '@/handlers/server';
+// import { getLayoutProps } from '@/handlers/server';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const result = await getLayoutProps(context);
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const result = await getLayoutProps(context);
 
-  return result;
-};
+//   return result;
+// };
 
-type RegulationsPageProps = LayoutProps;
+// type RegulationsPageProps = LayoutProps;
 
-const RegulationsPage: NextPage<RegulationsPageProps> = (props) => {
+const RegulationsPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -25,7 +25,7 @@ const RegulationsPage: NextPage<RegulationsPageProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Layout
+        {/* <Layout
           mainMenuLogo={props.mainMenuLogo}
           mainMenuContact={props.mainMenuContact}
           mainMenu={props.mainMenu}
@@ -34,7 +34,7 @@ const RegulationsPage: NextPage<RegulationsPageProps> = (props) => {
           footerCopyright={props.footerCopyright}
         >
           <RegulationsSection />
-        </Layout>
+        </Layout> */}
       </main>
     </>
   );

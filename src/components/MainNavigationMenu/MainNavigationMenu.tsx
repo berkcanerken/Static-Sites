@@ -25,15 +25,15 @@ import {
   MainNavigationChipStyled,
   MainNavigationMenuListButtonStyled,
 } from './MainNavigationMenu.styled';
-import { LogoApiType, MenuApiType } from '../../types/server';
+// import { LogoApiType, MenuApiType } from '../../types/server';
 import { ButtonActionWrapper } from '../ButtonActionWrapper';
 import { CopyContentButton } from '../CopyContentButton';
 import { DraverContext, DirectionObject } from '../Draver';
 import { LoginForm } from '../LoginForm';
 
-type MainNavigationMenuProps = {
-  data: [LogoApiType, MenuApiType, MenuApiType];
-};
+// type MainNavigationMenuProps = {
+//   data: [LogoApiType, MenuApiType, MenuApiType];
+// };
 
 const getLinkWithoutBaseUrl = (link: string): string => {
   const endingOfLink = link.split('/')[3];
@@ -41,7 +41,7 @@ const getLinkWithoutBaseUrl = (link: string): string => {
   return `/${endingOfLink}`;
 };
 
-const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
+const MainNavigationMenu: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [indexOfCurrentLink, setIndexOfCurrentLink] = React.useState<number>(0);
   const draverContext = React.useContext(DraverContext);
@@ -140,7 +140,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
           <MainNavigationDivider light />
 
           <MainNavigationMenuListStyled>
-            {data[2].map((current, index) => (
+            {/* {data[2].map((current, index) => (
               <MainNavigationMenuListItemStyled
                 key={`${current.label} : ${uuid()}`}
               >
@@ -165,7 +165,7 @@ const MainNavigationMenu: React.FC<MainNavigationMenuProps> = ({ data }) => {
                   )}
                 </ButtonActionWrapper>
               </MainNavigationMenuListItemStyled>
-            ))}
+            ))} */}
           </MainNavigationMenuListStyled>
         </MainNavigationContentWrapper>
       </MainNavigationMenuStyled>

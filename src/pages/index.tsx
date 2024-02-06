@@ -5,96 +5,19 @@ import { Banner } from '@/components/Banner';
 import { SlideProps, Slideshow } from '@/components/Slideshow';
 import { Section } from '@/components/Section';
 import { GetStaticProps, NextPage } from 'next';
-import { getLayoutProps } from '@/handlers/server';
-import { Layout, LayoutProps } from '@/components/Layout';
+// import { getLayoutProps } from '@/handlers/server';
+import { Layout } from '@/components/Layout';
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const result = await getLayoutProps(context);
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const result = await getLayoutProps(context);
 
-  return result;
-};
+//   return result;
+// };
 
-type HomePageProps = LayoutProps;
+// type HomePageProps = LayoutProps;
 
-const Home: NextPage<HomePageProps> = (props) => {
+const Home: NextPage = () => {
   // console.log('propsy: ', props);
-
-  const slidesData: SlideProps[] = [
-    {
-      image: {
-        src: '/icons/Rectangle.png',
-        alt: 'Wydarzenie',
-        width: 300,
-        height: 300,
-      },
-      heading: 'Wydarzenie',
-      date: '2023-07-26',
-      link: {
-        link: '/',
-        text: 'Sprawdź',
-      },
-    },
-
-    {
-      image: {
-        src: '/icons/Rectangle.png',
-        alt: 'Wydarzenie',
-        width: 300,
-        height: 300,
-      },
-      heading: 'Wydarzenie',
-      date: '2023-07-26',
-      link: {
-        link: '/',
-        text: 'Sprawdź',
-      },
-    },
-
-    {
-      image: {
-        src: '/icons/Rectangle.png',
-        alt: 'Wydarzenie',
-        width: 300,
-        height: 300,
-      },
-      heading: 'Wydarzenie',
-      date: '2023-07-26',
-      link: {
-        link: '/',
-        text: 'Sprawdź',
-      },
-    },
-
-    {
-      image: {
-        src: '/icons/Rectangle.png',
-        alt: 'Wydarzenie',
-        width: 300,
-        height: 300,
-      },
-      heading: 'Wydarzenie',
-      date: '2023-07-26',
-      link: {
-        link: '/',
-        text: 'Sprawdź',
-      },
-    },
-
-    {
-      image: {
-        src: '/icons/Rectangle.png',
-        alt: 'Wydarzenie',
-        width: 300,
-        height: 300,
-      },
-      heading: 'Wydarzenie',
-      date: '2023-07-26',
-      link: {
-        link: '/',
-        text: 'Sprawdź',
-      },
-    },
-  ];
 
   return (
     <>
@@ -105,14 +28,7 @@ const Home: NextPage<HomePageProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Layout
-          mainMenuLogo={props.mainMenuLogo}
-          mainMenuContact={props.mainMenuContact}
-          mainMenu={props.mainMenu}
-          footerSocial={props.footerSocial}
-          footerPolicy={props.footerPolicy}
-          footerCopyright={props.footerCopyright}
-        >
+        <Layout>
           <Hero
             image="/icons/homeHeroImg.png"
             alt="zdjęcie z tańczącymi ludźmi"
@@ -120,15 +36,7 @@ const Home: NextPage<HomePageProps> = (props) => {
 
           <AboutUsSection />
 
-          <Section heading="Wydarzenia">
-            <Slideshow slides={slidesData} />
-          </Section>
-
           <Banner />
-
-          <Section heading="Aktualności">
-            <Slideshow slides={slidesData} />
-          </Section>
         </Layout>
       </main>
     </>

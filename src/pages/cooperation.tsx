@@ -1,21 +1,21 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { CooperationSection } from '@/components/Domain/cooperation/CooperationSection';
-import { Layout, LayoutProps } from '@/components/Layout';
+import { Layout } from '@/components/Layout';
 import { GetStaticProps, NextPage } from 'next';
-import { getLayoutProps } from '@/handlers/server';
+// import { getLayoutProps } from '@/handlers/server';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const result = await getLayoutProps(context);
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const result = await getLayoutProps(context);
 
-  return result;
-};
+//   return result;
+// };
 
-type CooperationPageProps = LayoutProps;
+// type CooperationPageProps = LayoutProps;
 
-const CooperationPage: NextPage<CooperationPageProps> = (props) => {
+const CooperationPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -26,12 +26,12 @@ const CooperationPage: NextPage<CooperationPageProps> = (props) => {
       </Head>
       <main>
         <Layout
-          mainMenuLogo={props.mainMenuLogo}
-          mainMenuContact={props.mainMenuContact}
-          mainMenu={props.mainMenu}
-          footerSocial={props.footerSocial}
-          footerPolicy={props.footerPolicy}
-          footerCopyright={props.footerCopyright}
+        // mainMenuLogo={props.mainMenuLogo}
+        // mainMenuContact={props.mainMenuContact}
+        // mainMenu={props.mainMenu}
+        // footerSocial={props.footerSocial}
+        // footerPolicy={props.footerPolicy}
+        // footerCopyright={props.footerCopyright}
         >
           <CooperationSection />
         </Layout>

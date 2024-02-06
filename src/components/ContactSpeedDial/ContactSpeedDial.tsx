@@ -5,15 +5,15 @@ import {
   ContactSpeedDialActionStyled,
 } from './SpeedDial.styled';
 import { getContactData } from './ContactSpeedDial.data';
-import { MenuApiType } from '../../types/server';
+// import { MenuApiType } from '../../types/server';
 import { checkTheContactMethod } from '@/handlers/checkTheContactMethod';
 import { AlertContext } from '../Alert/Alert.context';
 
-type ContactSpeedDialProps = {
-  data: MenuApiType;
-};
+// type ContactSpeedDialProps = {
+//   data: MenuApiType;
+// };
 
-const ContactSpeedDial: React.FC<ContactSpeedDialProps> = ({ data }) => {
+const ContactSpeedDial: React.FC = () => {
   const [speedDialBottom, setSpeedDialBottom] = React.useState<number>(0);
   const [contactContent, setContactContent] = React.useState<string>('');
 
