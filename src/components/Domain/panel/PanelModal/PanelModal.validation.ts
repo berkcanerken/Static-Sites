@@ -1,6 +1,15 @@
 import { validationErrorMessages } from '@/consts/validationErrorMessages';
 import * as yup  from 'yup';
 import { COMPETITOR_CLASS } from './PanelModal.data';
+import dayjs from 'dayjs';
+
+
+// yup.addMethod(yup.date, 'format', function (format) {
+//     return this.transform(function (originalValue, originalObject) {
+//       const parsedDate = dayjs(originalValue, { strict: false });
+//       return parsedDate.isValid() ? parsedDate.toDate() : originalValue;
+//     });
+//   });
 
 const competitorsShema = yup.object().shape({
     givenName: yup
@@ -16,13 +25,14 @@ const competitorsShema = yup.object().shape({
     .email(validationErrorMessages.emailField)
     .required(validationErrorMessages.requiredField),
     tel: yup
-    .number()
+    .string()
+    .required(validationErrorMessages.requiredField)
     .min(9, validationErrorMessages.toShort)
-    .max(12, validationErrorMessages.toLong)
-    .required(validationErrorMessages.requiredField),
+    .max(12, validationErrorMessages.toLong),
     date: yup
     .date()
-    .required(validationErrorMessages.requiredField),
+    // .format('DD-MM-YYYY')
+    .nullable(),
     selectClass: yup
     .string()
     .required(validationErrorMessages.requiredField)

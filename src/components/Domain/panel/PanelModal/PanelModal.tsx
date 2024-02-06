@@ -32,6 +32,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { competitorsShema } from './PanelModal.validation';
 import AddIcon from '@mui/icons-material/Add';
 import 'dayjs/locale/pl';
+import dayjs from 'dayjs';
 
 type PanelModalProps = {
   dialogVariant: ValueOf<typeof DIALOG_VARIANT>;
@@ -71,8 +72,14 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
   const handleSelectChange = ({ target }: SelectChangeEvent): void =>
     setCompetitorClass(target.value as ValueOf<typeof COMPETITOR_CLASS>);
 
-  const handleSubmitValid = (): void => {};
-  const handleSubmitInvalid = (): void => {};
+  const handleSubmitValid = (): void => {
+    console.log('succes');
+  };
+  const handleSubmitInvalid = (): void => {
+    setIsLoading(false);
+
+    console.log('test - errors', errors);
+  };
 
   const handleAdCompetitorFormSubmit = (
     event: React.FormEvent<HTMLFormElement>
@@ -81,9 +88,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
 
     setIsLoading(true);
 
-    console.log('test - errors', errors.tel);
-
-    handleSubmit(handleSubmitValid, handleSubmitInvalid);
+    handleSubmit(handleSubmitValid, handleSubmitInvalid)(event);
   };
 
   return (
@@ -119,6 +124,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
                   disabled={isLoading}
                   required
                   error={!!errors?.[name]}
+                  helperText={errors?.[name]?.message}
                   {...register(name)}
                 />
               ) : (
@@ -132,6 +138,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
                   required={required}
                   fullWidth
                   error={!!errors?.[name]}
+                  helperText={errors?.[name]?.message}
                   {...register(name)}
                 />
               )
@@ -155,6 +162,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
                   autoWidth
                   label="Klasa"
                   disabled={isLoading}
+                  error={!!errors.selectClass}
                 >
                   {Object.values(COMPETITOR_CLASS).map((current) => (
                     <MenuItem key={current} value={current}>

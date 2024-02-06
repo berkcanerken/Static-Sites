@@ -7,6 +7,7 @@ const validationErrorMessages = {
     emailField: 'Podaj poprawny Email',
     toShort: 'Wpisana Warotść jest zbyt krótka',
     toLong: 'Wpisana wartość jest zbyt długa',
+    numberValue: 'Wartość powinna być cyfrą',
 } as const;
 
 export { validationErrorMessages };
