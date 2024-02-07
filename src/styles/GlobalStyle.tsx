@@ -20,8 +20,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: ${({ theme }) =>
-          (theme as typeof defaultTheme).background};
+        background: ${({ theme }) => (theme as typeof defaultTheme).background};
         position: relative;
         overflow-x: hidden;
         min-height: 100dvh;
