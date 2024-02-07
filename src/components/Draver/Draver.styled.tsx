@@ -35,14 +35,14 @@ const ExitButton = styled(Button)`
 `;
 
 const ExitIcon = styled(CloseRoundedIcon)`
-  color: ${({ theme }) => (theme as typeof defaultTheme).muiPanel};
+  color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
   width: ${pxToRem(30)};
   height: ${pxToRem(30)};
 `;
 
 const DividerStyled = styled(Divider)`
   width: 100%;
-  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
+  background: ${({ theme }) => (theme as typeof defaultTheme).secondaryItem};
 `;
 
 export {

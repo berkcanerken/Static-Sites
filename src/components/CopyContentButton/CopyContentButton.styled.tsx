@@ -9,7 +9,7 @@ const CopyContentButtonStyled = styled(Chip)`
   justify-content: center;
   gap: 10px;
   background: transparent;
-  color: ${({ theme }) => (theme as typeof defaultTheme).item};
+  color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
   font-size: 16px;
 `;
 

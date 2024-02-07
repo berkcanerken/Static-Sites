@@ -24,7 +24,7 @@ const CompetitorsTableToolbarStyled = styled(Toolbar).withConfig({
   height: ${pxToRem(64)};
   background: ${({ isSelected, theme }) =>
     isSelected
-      ? (theme as typeof defaultTheme).muiPanelActived
+      ? (theme as typeof defaultTheme).accent
       : (theme as typeof defaultTheme).background};
 
   ${CompetitorsTableToolbarHeadingStyled} {

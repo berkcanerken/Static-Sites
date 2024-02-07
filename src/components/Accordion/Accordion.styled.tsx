@@ -15,7 +15,7 @@ const AccordionSummaryStyled = styled(AccordionSummary)`
 `;
 
 const AccordionDetailsStyled = styled(AccordionDetails)`
-  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
+  background: ${({ theme }) => (theme as typeof defaultTheme).secondaryItem};
   color: ${({ theme }) => (theme as typeof defaultTheme).background};
   font-weight: 500;
 `;

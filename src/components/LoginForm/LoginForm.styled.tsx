@@ -17,7 +17,7 @@ const LoginFormStyled = styled.form.attrs(() => ({
 `;
 
 const LoginFormHeadingStyled = styled.h2`
-  color: ${({ theme }) => (theme as typeof defaultTheme).item};
+  color: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
 `;
 
 const LoginFormBoxStyled = styled.div`
@@ -49,7 +49,7 @@ const LoginFormButtonStyled = styled(Button).withConfig({
   background: ${({ theme, isPrimaryButton }) =>
     isPrimaryButton
       ? (theme as typeof defaultTheme).primaryItem
-      : (theme as typeof defaultTheme).item};
+      : (theme as typeof defaultTheme).primaryItem};
   color: ${({ theme }) => (theme as typeof defaultTheme).background};
   padding: ${pxToRem('6 15')};
   border-radius: ${pxToRem(24)};
@@ -60,7 +60,7 @@ const LoginFormButtonStyled = styled(Button).withConfig({
     background: ${({ theme, isPrimaryButton }) =>
       isPrimaryButton
         ? (theme as typeof defaultTheme).primaryItem
-        : (theme as typeof defaultTheme).item};
+        : (theme as typeof defaultTheme).primaryItem};
     color: ${({ theme }) => (theme as typeof defaultTheme).background};
   }
 `;

@@ -13,7 +13,7 @@ const ArticleStyled = styled.article`
   width: 100vw;
   min-height: 100dvh;
   padding: ${pxToRem('0 10')};
-  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
+  background: ${({ theme }) => (theme as typeof defaultTheme).secondaryItem};
 
   @media screen and (min-width: 1024px) {
     padding: ${pxToRem('0 25')};
@@ -71,7 +71,7 @@ const TabsStyled = styled(Tabs)`
       display: block;
       width: ${pxToRem(2)};
       height: ${pxToRem(48)};
-      background: ${({ theme }) => (theme as typeof defaultTheme).muiPanel};
+      background: ${({ theme }) => (theme as typeof defaultTheme).primaryItem};
     }
   }
 `;

@@ -18,7 +18,7 @@ const PanelSectionIconWrapperStyled = styled.div`
   min-width: 50%;
   width: 100%;
   height: ${pxToRem(200)};
-  background: ${({ theme }) => (theme as typeof defaultTheme).PanelBackground};
+  background: ${({ theme }) => (theme as typeof defaultTheme).secondaryItem};
   order: 1;
 
   svg {
@@ -78,7 +78,7 @@ const PanelSectionStyled = styled.div.withConfig({
   margin-top: ${({ isHeroComponent }) => (isHeroComponent ? '0' : pxToRem(30))};
   background: ${({ theme, variant }) =>
     variant === PANEL_SECTION_VARIANT.DEFAULT
-      ? (theme as typeof defaultTheme).PanelBackground
+      ? (theme as typeof defaultTheme).secondaryItem
       : (theme as typeof defaultTheme).background};
   overflow: hidden;
 

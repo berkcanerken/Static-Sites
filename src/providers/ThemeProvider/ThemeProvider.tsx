@@ -1,10 +1,12 @@
 import { ThemeProvider as ThemeProviderStyled } from 'styled-components';
 import React from 'react';
-import { colors } from '@/colors';
+import { darkThemeColors } from '@/colors';
 
-type ThemeProps = React.PropsWithChildren<{ theme?: Partial<typeof colors> }>;
+type ThemeProps = React.PropsWithChildren<{
+  theme?: Partial<typeof darkThemeColors>;
+}>;
 
-const defaultTheme = colors;
+const defaultTheme = darkThemeColors;
 
 const ThemeProvider: React.FC<ThemeProps> = ({
   theme = defaultTheme,
