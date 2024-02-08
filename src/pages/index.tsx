@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { GetStaticProps, NextPage } from 'next';
+import { Layout } from '@/components/Layout';
 // import { getLayoutProps } from '@/handlers/server';
 
 // export const getStaticProps: GetStaticProps = async (context) => {
@@ -21,7 +22,9 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <main>
+        <Layout></Layout>
+      </main>
     </>
   );
 };
