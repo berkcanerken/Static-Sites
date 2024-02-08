@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PanelFormStyled, PanelModalStyled } from './PanelModal.styled';
 import {
   Box,
@@ -20,6 +20,8 @@ import { ValueOf } from '@/types/server';
 import {
   COMPETITOR_CLASS,
   DIALOG_VARIANT,
+  FormValuesType,
+  addCompetitorFormDefaultValues,
   panelModalFields,
 } from './PanelModal.data';
 import { SelectChangeEvent } from '@mui/material';
@@ -27,12 +29,19 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers';
 import CloseIcon from '@mui/icons-material/Close';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { competitorsShema } from './PanelModal.validation';
 import AddIcon from '@mui/icons-material/Add';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import 'dayjs/locale/pl';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import {
+  CompetitorsDataType,
+  VisibleCompetitorsDataType,
+} from '../CompetitorsTable/CompetitorsTable.types';
+import { CompetitorsTableDataContext } from '../CompetitorsTable/CompetitorsTable.context';
+import { AlertContext, MessageType } from '@/components/Alert/Alert.context';
 
 type PanelModalProps = {
   dialogVariant: ValueOf<typeof DIALOG_VARIANT>;
@@ -47,8 +56,9 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
   const [competitorClass, setCompetitorClass] = React.useState<
     ValueOf<typeof COMPETITOR_CLASS>
   >(COMPETITOR_CLASS.F);
-
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  const ToastContext = useContext(AlertContext);
 
   const {
     handleSubmit,
@@ -56,24 +66,46 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
     control,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      givenName: '',
-      familyName: '',
-      careGiversName: '',
-      tel: undefined,
-      email: '',
-      date: undefined,
-      selectClass: 'F',
-      selectGender: 'Kobieta',
-    },
+    defaultValues: addCompetitorFormDefaultValues,
     resolver: yupResolver(competitorsShema),
   });
 
-  const handleSelectChange = ({ target }: SelectChangeEvent): void =>
-    setCompetitorClass(target.value as ValueOf<typeof COMPETITOR_CLASS>);
+  const CompetitorsDataContext = React.useContext(CompetitorsTableDataContext);
 
-  const handleSubmitValid = (): void => {
-    console.log('succes');
+  const handleSelectChange = ({ target }: SelectChangeEvent): void => {
+    setCompetitorClass(target.value as ValueOf<typeof COMPETITOR_CLASS>);
+  };
+
+  const handleSubmitValid: SubmitHandler<FormValuesType> = (values) => {
+    console.log('succes', values);
+
+    const data = {
+      id: 1017,
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+      givenName: values.givenName,
+      familyName: values.familyName,
+      careGiversName: values.careGiversName,
+      selectSex: values.selectSex,
+      class: values.selectClass,
+      license: 'Niedotyczy',
+      membershipFee: 'Niedotyczy',
+      sportClub: 'AZTS Gdańsk',
+      pairId: false,
+    } as CompetitorsDataType;
+
+    CompetitorsDataContext?.setData((prev) => [...prev, data]);
+
+    setTimeout(() => {
+      setIsLoading(false);
+
+      ToastContext?.setMessage({
+        icon: <CheckCircleRoundedIcon />,
+        text: `Gratulacje, Udało ci się dodać zawodnika`,
+        color: 'success',
+        severity: 'success',
+      } as MessageType);
+    }, 1000);
   };
   const handleSubmitInvalid = (): void => {
     setIsLoading(false);
@@ -180,7 +212,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
             </FormLabel>
 
             <Controller
-              name="selectGender"
+              name="selectSex"
               control={control}
               render={({ field }) => (
                 <RadioGroup
@@ -204,7 +236,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
             />
           </FormControl>
 
-          <FormControl fullWidth>
+          {/* <FormControl fullWidth>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
               <Controller
                 name="date"
@@ -213,7 +245,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
                 render={({ field }) => <DatePicker label="Wiek" {...field} />}
               />
             </LocalizationProvider>
-          </FormControl>
+          </FormControl> */}
 
           <Button
             variant="contained"

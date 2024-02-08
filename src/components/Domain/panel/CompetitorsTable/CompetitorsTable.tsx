@@ -4,6 +4,7 @@ import {
   TableButtonStyled,
 } from './CompetitorsTable.styled';
 import AddIcon from '@mui/icons-material/Add';
+import { v4 as uuid } from 'uuid';
 import {
   Checkbox,
   DialogProps,
@@ -18,10 +19,19 @@ import {
 } from '@mui/material';
 import { CompetitorsTableToolbar } from './CompetitorsTableToolbar';
 import { CompetitorsTableHead } from './CompetitorsTableHead';
-import { competitorsTableHeadCells } from './CompetitorsTable.data';
-import { CompetitorsDataType, Order } from './CompetitorsTable.types';
+import {
+  competitorsDataRows,
+  competitorsTableHeadCells,
+  visibleCompetitorsDataRows,
+} from './CompetitorsTable.data';
+import {
+  CompetitorsDataType,
+  Order,
+  VisibleCompetitorsDataType,
+} from './CompetitorsTable.types';
 import { getComparator, stableSort } from './CompetitorsTableHead.handlers';
 import EditIcon from '@mui/icons-material/Edit';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import { CompetitorsTableDataContext } from './CompetitorsTable.context';
 import { PanelModal } from '../PanelModal';
 import { ValueOf } from '@/types/utils';
@@ -29,7 +39,8 @@ import { DIALOG_VARIANT } from '../PanelModal/PanelModal.data';
 
 const CompetitorsTable: React.FC = () => {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof CompetitorsDataType>('id');
+  const [orderBy, setOrderBy] =
+    React.useState<keyof VisibleCompetitorsDataType>('id');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -51,11 +62,15 @@ const CompetitorsTable: React.FC = () => {
     }
   }, [openDialog]);
 
-  const rows = data || [];
+  React.useEffect((): void => {
+    setSelected([]);
+  }, [data?.length]);
+
+  const rows = visibleCompetitorsDataRows(data ?? []);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof CompetitorsDataType
+    property: keyof VisibleCompetitorsDataType
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -64,7 +79,7 @@ const CompetitorsTable: React.FC = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((current) => current.name);
+      const newSelecteds = rows.map((current) => current.givenName);
       setSelected(newSelecteds);
       return;
     }
@@ -146,17 +161,17 @@ const CompetitorsTable: React.FC = () => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.givenName);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.givenName)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={uuid()}
                       selected={isItemSelected}
                     >
                       <CompetitorsTableCellStyled>
@@ -179,29 +194,32 @@ const CompetitorsTable: React.FC = () => {
                         {row.id}
                       </CompetitorsTableCellStyled>
 
+                      {Object.values(row)
+                        .filter((current) => current !== row.id)
+                        .map((current) => (
+                          <CompetitorsTableCellStyled key={current}>
+                            {current}
+                          </CompetitorsTableCellStyled>
+                        ))}
+
                       <CompetitorsTableCellStyled>
-                        {row.name}
+                        <Tooltip title="Kontakt" aria-label="Kontakt">
+                          <IconButton
+                            onClick={(): void => console.log('test -> kontakt')}
+                          >
+                            <ContactsIcon />
+                          </IconButton>
+                        </Tooltip>
                       </CompetitorsTableCellStyled>
 
                       <CompetitorsTableCellStyled>
-                        {row.familyName}
-                      </CompetitorsTableCellStyled>
-
-                      <CompetitorsTableCellStyled>
-                        {row.class}
-                      </CompetitorsTableCellStyled>
-
-                      <CompetitorsTableCellStyled>
-                        {row.license}
-                      </CompetitorsTableCellStyled>
-
-                      <CompetitorsTableCellStyled>
-                        {row.membershipFee}
-                      </CompetitorsTableCellStyled>
-
-                      <CompetitorsTableCellStyled>
-                        <Tooltip title="Edytuj">
-                          <IconButton onClick={(): void => console.log('test')}>
+                        <Tooltip
+                          title="Edytuj"
+                          aria-label="Edytuj informacje o zawodniku"
+                        >
+                          <IconButton
+                            onClick={(): void => console.log('test -> edytuj')}
+                          >
                             <EditIcon />
                           </IconButton>
                         </Tooltip>

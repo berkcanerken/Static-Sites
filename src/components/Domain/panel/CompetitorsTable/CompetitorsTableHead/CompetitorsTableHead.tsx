@@ -6,9 +6,9 @@ import {
 } from './CompetitorsTableHead.styled';
 import { Box, TableRow, TableSortLabel, Tooltip } from '@mui/material';
 import {
-  CompetitorsDataType,
   CompetitorsTableHeadCellsType,
   Order,
+  VisibleCompetitorsDataType,
 } from '../CompetitorsTable.types';
 import { visuallyHidden } from '@mui/utils';
 
@@ -17,7 +17,7 @@ type CompetitorsTableHeadProps = {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof CompetitorsDataType
+    property: keyof VisibleCompetitorsDataType
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
@@ -35,7 +35,7 @@ const CompetitorsTableHead: React.FC<CompetitorsTableHeadProps> = ({
   rowCount,
 }) => {
   const createSortHandler =
-    (property: keyof CompetitorsDataType) =>
+    (property: keyof VisibleCompetitorsDataType) =>
     (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };

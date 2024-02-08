@@ -23,7 +23,7 @@ const CompetitorsTableToolbar: React.FC<CompetitorsTableToolbarProps> = ({
   const handleDeleteButton = (): void => {
     const data = competitorsContext?.data;
     const resolvedData = data?.filter(
-      ({ name }) => !rowsToDelete.includes(name)
+      ({ givenName }) => !rowsToDelete.includes(givenName)
     );
 
     competitorsContext?.setData(resolvedData as CompetitorsDataType[]);

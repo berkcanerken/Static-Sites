@@ -9,6 +9,7 @@ import { colors, darkThemeColors } from '@/colors';
 import { ThemeContext } from '@/contexts';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { AlertProvider } from '@/components/Alert/Alert.context';
 
 const App = ({ Component, pageProps: props }: AppProps) => {
   const { session, ...pageProps } = props;
@@ -34,11 +35,13 @@ const App = ({ Component, pageProps: props }: AppProps) => {
           <SessionProvider session={session}>
             <GlobalStyle />
 
-            <DraverProvider>
-              <Component {...pageProps} />
+            <AlertProvider>
+              <DraverProvider>
+                <Component {...pageProps} />
 
-              <Draver />
-            </DraverProvider>
+                <Draver />
+              </DraverProvider>
+            </AlertProvider>
           </SessionProvider>
         </ThemeProvider>
       </ThemeContext.Provider>

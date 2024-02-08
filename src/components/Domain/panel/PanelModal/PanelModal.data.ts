@@ -3,7 +3,19 @@ type PanelModalFieldType = {
     type: "email" | "tel" | "date" | 'text';
     autocomplete: string;
     required: boolean;
-    name: 'givenName' |'familyName' | 'careGiversName' | 'email' | 'selectGender' | 'selectClass' | 'date' | 'tel'
+    name: 'givenName' |'familyName' | 'careGiversName' | 'email' | 'selectSex' | 'selectClass' |
+    //  'date' | 
+    'phoneNumber'
+}
+
+export type FormValuesType = {
+    email: string;
+    phoneNumber: string ;
+    givenName: string;
+    familyName: string;
+    careGiversName: string;
+    selectSex: "Kobieta" | "Mężczyzna";
+    selectClass: "F" | "G" | "H";
 }
 
 const DIALOG_VARIANT = {
@@ -45,15 +57,27 @@ const panelModalFields = [
         type: 'number',
         autocomplete: 'tel',
         required: true,
-        name: 'tel',
+        name: 'phoneNumber',
     },
     {
         label: 'Imię i nazwisko opiekuna',
         type: 'text',
         autocomplete: 'name',
-        required: false,
+        required: true,
         name: 'careGiversName',
     },
 ] as PanelModalFieldType[];
 
-export { DIALOG_VARIANT, COMPETITOR_CLASS, panelModalFields };
+const addCompetitorFormDefaultValues = {
+    givenName: '',
+    familyName: '',
+    careGiversName: '',
+    phoneNumber: '',
+    email: '',
+    // TODO - fix date validation:
+    // date: null as Dayjs | null,
+    selectClass: 'F',
+    selectSex: 'Kobieta',
+  } as FormValuesType
+
+export { DIALOG_VARIANT, COMPETITOR_CLASS, panelModalFields, addCompetitorFormDefaultValues };
