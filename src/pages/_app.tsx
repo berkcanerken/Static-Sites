@@ -22,7 +22,7 @@ const App = ({ Component, pageProps: props }: AppProps) => {
 
   const { pathname } = useRouter();
 
-  React.useInsertionEffect(() => {
+  React.useLayoutEffect(() => {
     const value = pathname.includes('panel') ? false : true;
 
     setIsDarkTheme(value);
