@@ -64,6 +64,7 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
     handleSubmit,
     register,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: addCompetitorFormDefaultValues,
@@ -98,6 +99,8 @@ const PanelModal: React.FC<PanelModalProps & DialogProps> = ({
 
     setTimeout(() => {
       setIsLoading(false);
+
+      reset();
 
       ToastContext?.setMessage({
         icon: <CheckCircleRoundedIcon />,
