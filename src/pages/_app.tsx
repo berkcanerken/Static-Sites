@@ -10,6 +10,7 @@ import { ThemeContext } from '@/contexts';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { AlertProvider } from '@/components/Alert/Alert.context';
+import { Alert } from '@/components/Alert';
 
 const App = ({ Component, pageProps: props }: AppProps) => {
   const { session, ...pageProps } = props;
@@ -38,6 +39,8 @@ const App = ({ Component, pageProps: props }: AppProps) => {
             <AlertProvider>
               <DraverProvider>
                 <Component {...pageProps} />
+
+                <Alert />
 
                 <Draver />
               </DraverProvider>
